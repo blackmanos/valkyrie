@@ -9,7 +9,11 @@ FactoryGirl.define do
     # confirmed_at Time.now
   end
 
-  factory :confirmed_user, :parent => :user do
+  factory :confirmed_user, parent: :user do
     after(:create) { |user| user.confirm! }
+  end
+
+  factory :admin_user, parent: :confirmed_user do
+    after(:create) { |user| user.add_role(:admin) }
   end
 end

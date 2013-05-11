@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'cancan/matchers'
 
 describe User do
 
@@ -90,6 +91,22 @@ describe User do
 
     it 'should set the encrypted password attribute' do
       @user.encrypted_password.should_not be_blank
+    end
+  end
+
+  describe 'admin abilities' do
+    subject { ability }
+    let(:ability){ AdminAbility.new(user) }
+    let(:user){ nil }
+
+    context 'when is an admin user' do
+      let(:user){ FactoryGirl.create(:admin_user) }
+      it{ should be_able_to(:manage, :all) }
+    end
+
+    context 'when is not an admin user' do
+      let(:user){ FactoryGirl.create(:user) }
+      it{ should_not be_able_to(:manage, :all) }
     end
   end
 end
