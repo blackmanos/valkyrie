@@ -40,6 +40,12 @@ gem 'omniauth-facebook'
 gem 'rolify'
 gem 'cancan'
 
+gem 'kaminari'
+gem 'inherited_resources'
+gem 'formtastic'
+gem 'meta_search'
+gem 'activeadmin'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
