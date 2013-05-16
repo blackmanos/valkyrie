@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :database_connection do
-    name "MyString"
-    host "MyString"
-    kind "MyString"
-    adapter "MyString"
-    username "MyString"
-    password "MyString"
-    database "MyString"
+    name "Realmlist"
+    host "127.0.0.1"
+    kind "realm"
+    adapter "mysql2"
+    username "root"
+    password ""
+    database "realmd"
   end
 end

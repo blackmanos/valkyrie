@@ -1,4 +1,5 @@
 ActiveAdmin.register DatabaseConnection do
+  menu parent: 'World Of Warcraft'
 
   index do
     selectable_column

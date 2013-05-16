@@ -9,4 +9,8 @@ en:
     attributes:
       user:
         password: Password
+      wow:
+        realmd:
+          account:
+            gmlevel: GM Level
   general : General
