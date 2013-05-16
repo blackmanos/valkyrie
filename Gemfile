@@ -21,6 +21,7 @@ end
 
 group :development do
   gem 'haml-rails'
+  gem 'thin'
 end
 
 group :test do
@@ -45,6 +46,7 @@ gem 'inherited_resources'
 gem 'formtastic'
 gem 'meta_search'
 gem 'activeadmin'
+gem 'russian'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
