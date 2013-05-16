@@ -1,0 +1,13 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :database_connection do
+    name "MyString"
+    host "MyString"
+    kind "MyString"
+    adapter "MyString"
+    username "MyString"
+    password "MyString"
+    database "MyString"
+  end
+end

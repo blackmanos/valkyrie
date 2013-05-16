@@ -39,6 +39,7 @@ db/*.sqlite3
 /public/system/*
 /public/auctions/*
 /spec/tmp/*
+/spec/factories/database_connections.rb
 /cache
 /capybara*
 /capybara-*.html
