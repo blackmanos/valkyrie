@@ -71,3 +71,7 @@ pickle-email-*.html
 
 # vim artifacts
 **.swp
+
+# Aptana project files
+.project
+/.settings/
