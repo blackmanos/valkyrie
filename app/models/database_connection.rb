@@ -41,6 +41,7 @@ class DatabaseConnection < ActiveRecord::Base
   end
 
   scope :character, where(kind: 'character')
+  scope :saved, where( "`encrypted_password` <> '' AND `database` <> '' AND `username` <> '' AND `adapter` <> ''" )
 
   protected
 

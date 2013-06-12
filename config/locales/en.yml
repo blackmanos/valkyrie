@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  active_characters: "Active Characters"
   activerecord:
     models:
       role: "Role"
@@ -14,4 +15,6 @@ en:
           account:
             gmlevel: "GM Level"
             locale: "Language"
+  characters: "Characters"
+  deleted_characters:  "Deleted Characters"
   general: "General"

@@ -1,7 +1,7 @@
-module Wow::Realmd
+module Wow
   module ClassMethods
-    def connect
-      establish_connection database_config('Realmlist')
+    def connect(name = 'Realmlist')
+      establish_connection database_config(name)
     end
 
     def database_connection=(database_connection)
