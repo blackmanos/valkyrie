@@ -3,6 +3,11 @@ Valkyrie::Application.routes.draw do
 
   devise_for :users
 
+  scope '/wow/:realm', as: :wow, module: :wow  do
+    get 'statistic/pvp' => 'statistic#current', as: 'pvp_statistic'
+    resources :characters, only: [:show]
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,18 @@
+%table.table
+  %thead
+    %tr
+      %th= sort_link @search, :name
+      %th= sort_link @search, :race
+      %th= sort_link @search, :honor_standing
+      %th= sort_link @search, :honor_static_thisWeek_kills
+      %th= sort_link @search, :honor_static_thisWeek_cp
+  %tbody
+    - @characters.each do |character|
+      %tr
+        %td= link_to character.name, wow_character_path(params[:realm], character)
+        %td= Wow::Chars::Character::RACES[character.race].humanize
+        %td= character.honor_standing
+        %td= character.honor_static.thisWeek_kills
+        %td= character.honor_static.thisWeek_cp
+
+= paginate @characters

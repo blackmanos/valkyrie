@@ -49,7 +49,14 @@ ActiveAdmin.register Wow::Realmd::Account, as: 'Account' do
       end
       row :email
       row :joindate
-      row :last_ip
+      row :last_ip do
+        div do
+          link_to account.last_ip, admin_accounts_path('q[last_ip_contains]' => account.last_ip)
+        end
+        div do
+          account.address(:last_ip)
+        end
+      end
       row :failed_logins
       row :locked
       row :last_login
@@ -58,14 +65,21 @@ ActiveAdmin.register Wow::Realmd::Account, as: 'Account' do
       row t('activerecord.attributes.wow.realmd.account.locale') do
         Wow::Realmd::Account::LOCALES[account.locale].humanize
       end
-      row :reg_ip
+      row :reg_ip do
+        div do
+          link_to account.reg_ip, admin_accounts_path('q[reg_ip_contains]' => account.reg_ip)
+        end
+        div do
+          account.address(:reg_ip)
+        end
+      end
       row :client_info
     end
 
     h1 { t(:characters) }
     DatabaseConnection.character.saved.each do |connection|
-      Wow::Chars::Character.database_connection = connection
-      Wow::Chars::Character.connect
+      Wow::Chars.database_connection = connection
+      Wow::Chars.connect
       h2 do
         connection.name
       end
@@ -113,6 +127,8 @@ ActiveAdmin.register Wow::Realmd::Account, as: 'Account' do
   
   form do |f|
     f.inputs t('general') do
+      f.input :username
+      f.input :email, as: :email
       f.input :gmlevel, as: :select, collection: Wow::Realmd::Account::GM_LEVELS.inject({}) { |h, (k, v)| h[k] = v.humanize; h }.invert
       f.input :locale, as: :select, collection: Wow::Realmd::Account::LOCALES.inject({}) { |h, (k, v)| h[k] = v.humanize; h }.invert
       f.input :password

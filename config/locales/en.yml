@@ -17,4 +17,6 @@ en:
             locale: "Language"
   characters: "Characters"
   deleted_characters:  "Deleted Characters"
+  enter_name: "Enter Name..."
   general: "General"
+  search: "Search"

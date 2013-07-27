@@ -1,0 +1,2 @@
+module Wow::StatisticHelper
+end

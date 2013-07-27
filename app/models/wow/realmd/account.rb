@@ -46,16 +46,11 @@ class Wow::Realmd::Account < ActiveRecord::Base
 
   self.table_name = 'account'
   
-  attr_accessible :gmlevel, :password, :locale
+  attr_accessible :gmlevel, :password, :locale, :email, :username
+  attr_accessor :password
 
+  before_save :set_sha_pass_hash
   
-  def password=(password)
-    unless password.blank?
-      self.sha_pass_hash = Digest::SHA1.hexdigest("#{self.username.upcase}:#{password.upcase}").upcase
-      self.v = 0
-      self.s = 0
-    end
-  end
   scope :players, where(gmlevel: 0)
   scope :moderators, where(gmlevel: 1)
   scope :game_masters, where(gmlevel: 2)
@@ -63,4 +58,24 @@ class Wow::Realmd::Account < ActiveRecord::Base
   scope :admins, where(gmlevel: 4)
   scope :sys_ops, where(gmlevel: 5 )
   scope :not_logged, where(last_login: 0)
+
+  def address(ip)
+    results = Geocoder.search(self.read_attribute(ip))
+    if obj = results.first
+      s = obj.state.to_s == '' ? '' : ", #{obj.state}"
+      "#{obj.city}#{s} #{obj.postal_code}, #{obj.country}".sub(/^[ ,]*/, '')
+    else
+      ''
+    end
+  end
+
+  private
+
+  def set_sha_pass_hash
+    unless self.password.blank?
+      self.sha_pass_hash = Digest::SHA1.hexdigest("#{self.username.upcase}:#{self.password.upcase}").upcase
+      self.v = 0
+      self.s = 0
+    end
+  end
 end
