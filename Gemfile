@@ -13,6 +13,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
+  gem 'angularjs-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -36,6 +37,7 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
