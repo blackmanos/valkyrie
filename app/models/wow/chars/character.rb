@@ -1,6 +1,6 @@
 class Wow::Chars::Character < Wow::Chars
   paginates_per 25
-  set_primary_key :guid
+  self.primary_key = 'guid'
 
   CLASSES = {
       1 => 'warrior',
