@@ -29,7 +29,7 @@ class Wow::Chars::Character < Wow::Chars
 
   has_one :honor_static, class_name: 'HonorStatic', foreign_key: :guid
 
-  scope :by_account, lambda{ |account| where(account: account) unless account.nil? }
-  scope :deleted_by_account, lambda { |account| where(deleteInfos_Account: account) unless account.nil? }
-  scope :pvp_current, joins(:honor_static).includes(:honor_static).where("#{HonorStatic.table_name}.thisWeek_kills > 25")
+  scope :by_account, -> (account) { where(account: account) unless account.nil? }
+  scope :deleted_by_account, -> (account) { where(deleteInfos_Account: account) unless account.nil? }
+  scope :pvp_current, -> { joins(:honor_static).includes(:honor_static).where("#{HonorStatic.table_name}.thisWeek_kills > 25") }
 end

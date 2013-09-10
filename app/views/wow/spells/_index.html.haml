@@ -1,0 +1,18 @@
+%table.table
+  %thead
+    %tr
+      %th= t :icon
+      %th= sort_link @search, :name_en
+      %th= sort_link @search, :level
+  %tbody
+    - @spells.each do |spell|
+      %tr
+        %td= link_to wow_spell_icon(spell), wow_spell_path(spell)
+        %td
+          = link_to spell.name, wow_spell_path(spell)
+          - unless spell.rank.blank?
+            %p= spell.rank
+        %td
+          = spell.level if spell.level > 0
+
+= paginate @spells

@@ -10,7 +10,7 @@ Valkyrie::Application.routes.draw do
 
   namespace :wow do
     resources :spells, only: [:show, :index] do
-      collection { post :search, to: 'spells#index' }
+    #  collection { post :search, to: 'spells#index' }
     end
   end
 

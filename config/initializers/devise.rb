@@ -1,6 +1,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  # The secret key used by Devise. Devise uses this key to generate
+  # random tokens. Changing this key will render invalid all existing
+  # confirmation, reset password and unlock tokens in the database.
+  config.secret_key = '14693b44f42d75fd721f21bb4c324f56414732b18750c721d71828ce9d762044c4c046f5ff7ae6df7ed1c0f003b8f355658eff6c0e0e81a308b9ae7e2059f52d'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
@@ -183,10 +188,6 @@ Devise.setup do |config|
   #
   # Require the `devise-encryptable` gem when using anything other than bcrypt
   # config.encryptor = :sha512
-
-  # ==> Configuration for :token_authenticatable
-  # Defines name of the authentication token params key
-  config.token_authentication_key = :authentication_token
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for

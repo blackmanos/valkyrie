@@ -20,3 +20,4 @@ def seed_table(connection, table)
 end
 
 seed_table connection, 'wow_spells'
+seed_table connection, 'wow_spell_icons'

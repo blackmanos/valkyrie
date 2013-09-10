@@ -15,3 +15,55 @@
 
 @import "bootstrap";
 @import "bootstrap-responsive";
+
+/* framed icons */
+.icon-frame {
+  display: inline-block;
+  overflow: hidden;
+  padding: 1px;
+  background-color: $black;
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+  @include  border-radius(3px);
+  border: 1px solid #434445;
+  border-bottom-color: #2f3032;
+  border-top-color: #b1b2b4;
+  img {
+    display: block;
+    vertical-align: bottom;
+  }
+
+  &.frame-36,
+  &.frame-50,
+  &.frame-56 {
+    @include box-shadow($black 0 0 10px);
+  }
+
+  @each $size in 12, 14, 18, 27, 36, 50, 56 {
+    &.frame-#{$size} {
+      @include square(1px * $size);
+    }
+  }
+}
+
+.icon-frame-gloss {
+  display: block;
+  @include square(76px);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  .frame {
+    display: block;
+    background: url("../images/icons/frames/frame-icon.png") no-repeat;
+    @include square(76px);
+  }
+}
+
+.circle-frame {
+  border-width: 2px;
+  border-left-color: #B1B2B4;
+  @include  border-radius(30px);
+}
+
+.table .icon-frame {
+  vertical-align: middle;
+}

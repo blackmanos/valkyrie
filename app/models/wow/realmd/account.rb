@@ -46,18 +46,17 @@ class Wow::Realmd::Account < ActiveRecord::Base
 
   self.table_name = 'account'
   
-  attr_accessible :gmlevel, :password, :locale, :email, :username
   attr_accessor :password
 
   before_save :set_sha_pass_hash
   
-  scope :players, where(gmlevel: 0)
-  scope :moderators, where(gmlevel: 1)
-  scope :game_masters, where(gmlevel: 2)
-  scope :bug_trackers, where(gmlevel: 3)
-  scope :admins, where(gmlevel: 4)
-  scope :sys_ops, where(gmlevel: 5 )
-  scope :not_logged, where(last_login: 0)
+  scope :players, -> { where(gmlevel: 0) }
+  scope :moderators, -> { where(gmlevel: 1) }
+  scope :game_masters, -> { where(gmlevel: 2) }
+  scope :bug_trackers, -> { where(gmlevel: 3) }
+  scope :admins, -> { where(gmlevel: 4) }
+  scope :sys_ops, -> { where(gmlevel: 5 ) }
+  scope :not_logged, -> { where(last_login: 0) }
 
   def address(ip)
     results = Geocoder.search(self.read_attribute(ip))

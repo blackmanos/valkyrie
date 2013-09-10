@@ -5,7 +5,6 @@ class DatabaseConnection < ActiveRecord::Base
   TYPES = %w(realm character world)
   ADAPTERS = %w(mysql2)
 
-  attr_accessible :adapter, :database, :password, :host, :kind, :username, :name
   validates :host, :kind, :name, presence: true
   validates :adapter, inclusion: { in: ADAPTERS }
   validates :kind, inclusion: { in: TYPES }
@@ -40,8 +39,8 @@ class DatabaseConnection < ActiveRecord::Base
     { adapter: adapter, host: host, username: username, password: password, database: database }
   end
 
-  scope :character, where(kind: 'character')
-  scope :saved, where( "`encrypted_password` <> '' AND `database` <> '' AND `username` <> '' AND `adapter` <> ''" )
+  scope :character, -> { where(kind: 'character') }
+  scope :saved, -> { where( "`encrypted_password` <> '' AND `database` <> '' AND `username` <> '' AND `adapter` <> ''" ) }
 
   protected
 
