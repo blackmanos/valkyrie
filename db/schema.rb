@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910213333) do
+ActiveRecord::Schema.define(version: 20140202171308) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -94,8 +94,34 @@ ActiveRecord::Schema.define(version: 20130910213333) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  create_table "wow_spell_cast_times", force: true do |t|
+    t.integer "base"
+  end
+
+  create_table "wow_spell_dispel_types", force: true do |t|
+    t.string "name_en"
+  end
+
+  create_table "wow_spell_durations", force: true do |t|
+    t.integer "base"
+  end
+
   create_table "wow_spell_icons", force: true do |t|
     t.string "name"
+  end
+
+  create_table "wow_spell_mechanics", force: true do |t|
+    t.string "name_en"
+  end
+
+  create_table "wow_spell_radius", force: true do |t|
+    t.integer "base"
+  end
+
+  create_table "wow_spell_ranges", force: true do |t|
+    t.integer "range_min"
+    t.integer "range_max"
+    t.string  "name_en"
   end
 
   create_table "wow_spells", force: true do |t|
@@ -104,7 +130,7 @@ ActiveRecord::Schema.define(version: 20130910213333) do
     t.integer "mechanic_id",                     limit: 2
     t.integer "spell_cast_time_id"
     t.integer "cooldown"
-    t.integer "chanel_interrupt_flags"
+    t.integer "channel_interrupt_flags"
     t.integer "proc_chance"
     t.integer "proc_charges"
     t.integer "level"

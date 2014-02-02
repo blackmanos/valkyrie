@@ -1,3 +1,27 @@
 @import '../partials/mixins';
+@import '../partials/variables';
 
 @include make-background-images(#330404, 'molten-core');
+
+#spell {
+  ul.detail {
+    padding-left: 0px;
+    list-style-type: none;
+    h4 {
+      display: inline-block;
+    }
+    .spell-rank {
+      color: $gray-dark;
+    }
+  }
+
+  .info {
+    .icon-frame {
+      float: left;
+    }
+    ul.detail {
+      margin-left: 80px;
+    }
+  }
+
+}

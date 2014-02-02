@@ -8,6 +8,8 @@ $gray:          rgba(255,255,255,0.3);
 $gray-light:    rgba(255,255,255,0.07);
 $gray-lighter:  rgba(255,255,255,0.05);
 
+$yellow: #ffd100;
+
 //== Scaffolding
 //
 // ## Settings for some of the most global styles.
@@ -60,3 +62,18 @@ $breadcrumb-color:              $gray-dark;
 $breadcrumb-active-color:       white;
 //** Textual separator for between breadcrumb elements
 $breadcrumb-separator:          '';
+
+//== Code
+//
+//##
+
+$code-color:                  #c7254e !default;
+$code-bg:                     #f9f2f4 !default;
+
+$kbd-color:                   #fff !default;
+$kbd-bg:                      #333 !default;
+
+$pre-bg:                      $gray-light !default;
+$pre-color:                   $gray-dark !default;
+$pre-border-color:            $gray-lighter !default;
+$pre-scrollable-max-height:   340px !default;

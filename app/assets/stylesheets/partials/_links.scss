@@ -1,0 +1,6 @@
+.spell {
+  color: $yellow;
+  &:hover, &:focus {
+    color: white;
+  }
+}

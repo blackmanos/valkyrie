@@ -20,9 +20,9 @@
     @include box-shadow(black 0 0 10px);
   }
 
-  @each $size in 12, 14, 18, 27, 36, 50, 56 {
+  @each $size in 12, 14, 18, 28, 36, 50, 56 {
     &.frame-#{$size} {
-      @include square(1px * $size);
+      @include square(1px * $size+4);
     }
   }
 }

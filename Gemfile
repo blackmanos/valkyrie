@@ -24,6 +24,7 @@ group :development do
 
   gem 'rack-mini-profiler'
   gem 'spring'
+  gem 'quiet_assets'
 end
 
 group :test do

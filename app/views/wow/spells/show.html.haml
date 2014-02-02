@@ -1,1 +1,132 @@
-%h1= @spell.name
+.page-header
+  %h1= @spell.name
+
+#spell
+  .row
+    .col-lg-8
+      .row
+        .col-lg-7.info
+          = wow_icon(@spell.icon.name, 56)
+          %ul.detail
+            %li
+              %h4= @spell.name
+              - unless @spell.rank.blank?
+                .pull-right
+                  %h4.spell-rank= @spell.rank
+            - if @spell.power_cost > 0 || @spell.range.max > 0 || @spell.power_cost_percent > 0
+              %li
+                - if @spell.power_cost > 0
+                  = t('wow.tooltip_mana_cost', mana: @spell.power_cost)
+                - elsif @spell.power_cost_percent > 0
+                  = t('wow.tooltip_mana_cost_percent', percent: @spell.power_cost_percent)
+                - if @spell.range.max > 0
+                  .pull-right
+                    = t('wow.tooltip_spell_range', range: @spell.range.max)
+            - if @spell.cast_time.to_i > 0 || @spell.spell_cast_time_id == 1 || @spell.cooldown > 0
+              %li
+                - if @spell.spell_cast_time_id != 1
+                  = t('wow.tooltip_spell_cast_time', cast_time: @spell.cast_time.to_i)
+                - elsif @spell.channel_interrupt_flags
+                  = t('wow.tooltip_spell_instant')
+                - elsif @spell.spell_cast_time_id == 1
+                  = t('wow.tooltip_spell_channel')
+                - if @spell.cooldown > 0
+                  .pull-right
+                    = t('wow.tooltip_cooldown', count: @spell.cooldown)
+            - if @spell.level > 0
+              %li= t('wow.tooltip_required_level', level: @spell.level)
+            - unless @spell.tooltip_en.blank?
+              %li.yellow= @spell.tooltip_en
+    .col-lg-4
+  %hr
+  - unless @spell.buff_en.blank?
+    %h3= t('wow.aura')
+    .row
+      .col-lg-3
+        %ul.detail
+          %li
+            %h4.yellow= @spell.name
+            - if @spell.dispel_type_id > 0
+              %h4.yellow.pull-right= @spell.dispel_type.name_en
+          %li= @spell.buff_en
+          - if @spell.duration.to_i > 0
+            %li.yellow=t('wow.tooltip_duration_left', count: @spell.duration.to_i)
+  %h3=t('wow.spell_description')
+  %table.table.table-bordered
+    %tr
+      %td.col-lg-2
+        =t('cost')
+      %td.col-lg-4
+        - if @spell.power_cost > 0
+          = t('wow.tooltip_mana_cost', mana: @spell.power_cost)
+        - elsif @spell.power_cost_percent > 0
+          = t('wow.tooltip_mana_cost_percent', percent: @spell.power_cost_percent)
+        - else
+          = t('none')
+      %td.col-lg-2
+        = t('duration')
+      %td.col-lg-4
+        - if @spell.duration.to_i > 0
+          = t('wow.duration', count: @spell.duration.to_i)
+        - else
+          = t('none')
+    %tr
+      %td
+        =t('wow.range')
+      %td
+        ="#{t('wow.range_with_unit', count: @spell.range.max)} (#{@spell.range.name_en})"
+      %td
+        =t('wow.school')
+      %td
+        = t("wow.schools.#{@spell.school}")
+    %tr
+      %td
+        =t('wow.cast')
+      %td
+        - if @spell.spell_cast_time_id != 1
+          = t('wow.duration', count: @spell.cast_time.to_i)
+        - elsif @spell.channel_interrupt_flags
+          = t('wow.tooltip_spell_instant')
+        - else
+          = t('wow.tooltip_spell_channel')
+      %td
+        =t('wow.mechanic')
+      %td
+        - if @spell.mechanic_id > 0
+          = @spell.mechanic.name_en
+        - else
+          = t('none')
+    %tr
+      %td
+        =t('wow.cooldown')
+      %td
+        - if @spell.cooldown > 0
+          = t('wow.duration', count: @spell.cooldown)
+        - else
+          = t('none')
+      %td
+        =t('wow.dispel_type')
+      %td
+        - if @spell.dispel_type_id > 0
+          = @spell.dispel_type.name_en
+        - else
+          = t('none')
+    - if @spell.targets > 0
+      %tr
+        %td
+          =t('wow.max_targets')
+        %td{colspan: 3}
+          = @spell.targets
+    - (1..3).each_with_index do |i|
+      - if @spell.effect_id(i) > 0
+        %tr
+          %td
+            = t('wow.effect', num: i)
+          %td.spell-effect{colspan: 3}
+            = wow_spell_effect_info(@spell, i)
+
+
+- if Rails.env == 'development'
+  %h3=t('debug_info')
+  %pre.pre-scrollable
+    = JSON.pretty_generate(@spell.attributes)

@@ -1,4 +1,8 @@
 ru:
+  debug_info: "Отладочная информация"
+  cost: "Цена"
+  duration: "Длительность"
+  none: "нет"
   views:
     pagination:
       truncate: '...'
@@ -21,4 +25,51 @@ ru:
   forums: "Форумы"
   server_rules: "Правила Сервера"
   wow:
+    aura: "Аура"
+    cast: "Применение"
+    cooldown: "Восстановление"
+    dispel_type: "Тип рассеивания"
+    effect: "Эффект #%{num}"
+    duration:
+      one: "%{count} секунда"
+      few: "%{count} секунды"
+      many: "%{count} секунд"
+      other: "%{count} секунды"
+    interval: "Интервал"
+    max_targets: "Максимум целей"
+    mechanic: "Механика"
+    object: "Объект"
+    radius: "Радиус"
+    range: "Радиус действия"
+    range_with_unit:
+      one: "%{count} метр"
+      few: "%{count} метра"
+      many: "%{count} метров"
+      other: "%{count} метра"
+    school: "Школа"
+    schools:
+      physical: "Физический урон"
+      holy: "Свет"
+      fire: "Огонь"
+      nature: "Природа"
+      frost: "Лед"
+      shadow: "Тьма"
+      arcane: "Тайная Магия"
     spells: "Заклинания"
+    spell: "Заклинание"
+    spell_description: "Описание заклинания"
+    tooltip_cooldown: "Восстановление: %{count} сек."
+    tooltip_duration_left:
+      one: "Осталось: %{count} секунда"
+      few: "Осталось: %{count} секунды"
+      many: "Осталось: %{count} секунд"
+      other: "Осталось: %{count} секунды"
+    tooltip_mana_cost: "%{mana} маны"
+    tooltip_mana_cost_percent: "%{percent}% от базовой маны"
+    tooltip_required_level: "Требует уровень: %{level}"
+    tooltip_spell_range: "Радиус действия: %{range} м"
+    tooltip_spell_instant: "Мгновенное действие"
+    tooltip_spell_channel: "Направляемое"
+    tooltip_spell_cast_time: "Применение: %{cast_time} сек."
+    value: "Значение"
+
