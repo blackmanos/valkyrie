@@ -6,3 +6,19 @@ ru:
       last: 'Послед.'
       first: 'Перв.'
       prev: 'Пред.'
+
+  devise:
+    links:
+      logout: "Выйти"
+      login: "Авторизуйтесь"
+      register: "создайте новую запись"
+  welcome: "Добро пожаловать"
+  or: "или"
+  community: "Сообщество"
+  contacts: "Контакты"
+  home: "Главная"
+  game: "Игра"
+  forums: "Форумы"
+  server_rules: "Правила Сервера"
+  wow:
+    spells: "Заклинания"

@@ -1,0 +1,28 @@
+@mixin transition-text-shadow($transition...) {
+  -webkit-transition: text-shadow $transition;
+  -moz-transition: text-shadow $transition;
+  -o-transition: text-shadow $transition;
+  transition: text-shadow $transition;
+}
+
+@mixin make-background-image($color, $image, $size) {
+  html, body {
+    background: $color image-url('backgrounds/#{$image}/#{$size}.jpg')  no-repeat center -200px !important;
+  }
+
+  header {
+    background: $color image-url('backgrounds/#{$image}/#{$size}.jpg')  no-repeat center 0 !important;
+  }
+}
+
+@mixin make-background-images($color, $image) {
+  @include make-background-image($color, $image, 1920);
+
+  @media (max-width: 1280px) {
+    @include make-background-image($color, $image, 1280);
+  }
+
+  @media (max-width: 1024px) {
+    @include make-background-image($color, $image, 1024);
+  }
+}

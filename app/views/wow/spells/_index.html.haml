@@ -1,13 +1,12 @@
-%table.table
+%table.table.table-striped
   %thead
     %tr
-      %th= t :icon
-      %th= sort_link @search, :name_en
+      %th{colspan: 2}= sort_link @search, :name_en
       %th= sort_link @search, :level
   %tbody
     - @spells.each do |spell|
       %tr
-        %td= link_to wow_spell_icon(spell), wow_spell_path(spell)
+        %td.icon-cell= link_to wow_spell_icon(spell), wow_spell_path(spell)
         %td
           = link_to spell.name, wow_spell_path(spell)
           - unless spell.rank.blank?

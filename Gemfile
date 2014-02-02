@@ -72,3 +72,6 @@ gem 'jquery-turbolinks'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',          group: :doc, require: false
+
+# Breadcrumbs
+gem 'crummy', '~> 1.8.0'

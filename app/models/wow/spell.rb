@@ -5,7 +5,7 @@ class Wow::Spell < ActiveRecord::Base
 
   belongs_to :icon, foreign_key: :spell_icon_id
 
-  #default_scope { order('name_en ASC') }
+  default_scope { order('name_en ASC') }
 
   def name
     name_en

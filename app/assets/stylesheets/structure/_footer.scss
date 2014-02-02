@@ -1,0 +1,22 @@
+.lower-footer {
+  .copyright {
+    text-transform: uppercase;
+    padding: 30px 0 30px 0;
+    color: rgba(255,255,255,0.15);
+    border-top: 1px solid $gray-lighter;
+    .legal-links {
+      display: block;
+    }
+    span {
+      margin: 0 10px 0 0;
+    }
+    a {
+      margin: 0 10px 0 0;
+      color: $gray;
+      white-space: nowrap;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}

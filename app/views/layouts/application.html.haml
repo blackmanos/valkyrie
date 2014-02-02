@@ -3,10 +3,45 @@
   %head
     %title Valkyrie
     = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag     params[:controller]
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    %header.navbar.navbar-default.navbar-static-top
+      .header-primary
+        .container
+          %h1.text-logo
+            = link_to root_path do
+              Valkyrie WoW
+              %span.small Classic 1.12
+          %nav.service
+            %ul.bar
+              %li.cell.welcome
+                - if user_signed_in?
+                  = "#{t('welcome')}, #{current_user.email}"
+                  |
+                  = link_to t('devise.links.logout'), destroy_user_session_path, method: :delete
+                - else
+                  = link_to t('devise.links.login'), new_user_session_path
+                  = t 'or'
+                  = link_to t('devise.links.register'), new_user_registration_path
+              %li.cell= link_to t('game'), '#', class: 'link'
+              %li.cell= link_to t('community'), '#', class: 'link'
+              %li.cell= link_to t('forums'), '#', class: 'link'
+
+      .header-secondary
+        .container
+          = render_crumbs
     .container
-      .row
-        .span12
-          = yield
+      = yield
+    %footer
+      .container
+        .sitemap
+        .lower-footer
+          .copyright
+            %a.pull-right{href: '#'}
+              %span= I18n.locale.to_s == 'en' ? 'Русский' : 'English'
+            %span.legal-links
+              %a{href: '#'}= t('server_rules')
+              %a{href: '#'}= t('contacts')
+            = "© Valkyrie WoW, 2009-#{Date.today.year}"

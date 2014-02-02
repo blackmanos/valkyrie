@@ -1,0 +1,62 @@
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-darker:   rgba(255,255,255,0.7);
+$gray-dark:     rgba(255,255,255,0.5);
+$gray:          rgba(255,255,255,0.3);
+$gray-light:    rgba(255,255,255,0.07);
+$gray-lighter:  rgba(255,255,255,0.05);
+
+//== Scaffolding
+//
+// ## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg: #281504;
+//** Global text color on `<body>`.
+$text-color:  $gray-darker;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: 'Blizzard', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+$font-size-base: 13px;
+
+//** By default, this inherits from the `<body>`.
+$headings-font-weight:    300;
+$headings-color: white;
+
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Background color used for `.table-striped`.
+$table-bg-accent: $gray-light;
+
+//** Border color for table and cell borders.
+$table-border-color: $gray-lighter;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-default-border: $gray-light;
+
+//== Breadcrumbs
+//
+//##
+$breadcrumb-padding-vertical:   0;
+$breadcrumb-padding-horizontal: 0;
+//** Breadcrumb background color
+$breadcrumb-bg:                 inherit;
+//** Breadcrumb text color
+$breadcrumb-color:              $gray-dark;
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color:       white;
+//** Textual separator for between breadcrumb elements
+$breadcrumb-separator:          '';
