@@ -9,22 +9,20 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require formtastic-bootstrap
  */
 
 @import "bootstrap";
-@import "bootstrap-responsive";
 
 /* framed icons */
 .icon-frame {
   display: inline-block;
   overflow: hidden;
   padding: 1px;
-  background-color: $black;
+  background-color: black;
   background-position: 1px 1px;
   background-repeat: no-repeat;
-  @include  border-radius(3px);
+  border-radius: 3px;
   border: 1px solid #434445;
   border-bottom-color: #2f3032;
   border-top-color: #b1b2b4;
@@ -36,7 +34,7 @@
   &.frame-36,
   &.frame-50,
   &.frame-56 {
-    @include box-shadow($black 0 0 10px);
+    @include box-shadow(black 0 0 10px);
   }
 
   @each $size in 12, 14, 18, 27, 36, 50, 56 {
@@ -61,7 +59,7 @@
 .circle-frame {
   border-width: 2px;
   border-left-color: #B1B2B4;
-  @include  border-radius(30px);
+  border-radius: 30px;
 }
 
 .table .icon-frame {

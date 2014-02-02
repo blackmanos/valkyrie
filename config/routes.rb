@@ -1,6 +1,4 @@
 Valkyrie::Application.routes.draw do
-  ActiveAdmin.routes(self)
-
   devise_for :users
 
   scope '/wow/:realm', as: :wow, module: :wow  do
