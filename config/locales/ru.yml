@@ -46,6 +46,7 @@ ru:
       few: "%{count} метра"
       many: "%{count} метров"
       other: "%{count} метра"
+    reagents: "Материалы"
     school: "Школа"
     schools:
       physical: "Физический урон"
@@ -58,6 +59,7 @@ ru:
     spells: "Заклинания"
     spell: "Заклинание"
     spell_description: "Описание заклинания"
+    tools: "Инструменты"
     tooltip_cooldown: "Восстановление: %{count} сек."
     tooltip_duration_left:
       one: "Осталось: %{count} секунда"

@@ -53,6 +53,7 @@ en:
     range_with_unit:
       one: "%{count} yard"
       other: "%{count} yards"
+    reagents: "Reagents"
     school: "School"
     schools:
       physical: "Physical"
@@ -65,6 +66,7 @@ en:
     spells: "Spells"
     spell: "Spell"
     spell_description: "Spell Details"
+    tools: "Tools"
     tooltip_cooldown: "%{count} sec cooldown"
     tooltip_duration_left:
       one: "%{count} second left"

@@ -363,6 +363,32 @@ class Wow::Spell < ActiveRecord::Base
     define_method("effect_#{meth}") { |i| self["effect_#{i}_#{meth}".to_sym] }
   end
 
+  def need_reagents?
+    reagents_ids.any? {|id| id > 0 }
+  end
+
+  def reagents_ids
+    [reagent_1, reagent_2, reagent_3, reagent_4, reagent_5, reagent_6, reagent_7, reagent_8]
+  end
+
+  def reagents(i)
+    @reagents ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: reagents_ids).includes(:icon).all.to_a
+    @reagents.find{ |item| item.id == reagents_ids[i-1] }
+  end
+
+  def reagent_counts(i)
+    self["reagent_#{i}_count".to_sym]
+  end
+
+  def tools(i)
+    @tools ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: [tool_1, tool_2]).includes(:icon).all.to_a
+    @tools.find{ |item| item.id == self["tool_#{i}".to_sym] }
+  end
+
+  def need_tools?
+    tool_1 > 0 || tool_2 > 0
+  end
+
   def to_s
     name
   end

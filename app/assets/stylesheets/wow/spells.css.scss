@@ -5,13 +5,14 @@
 
 #spell {
   ul.detail {
-    padding-left: 0px;
-    list-style-type: none;
     h4 {
       display: inline-block;
     }
     .spell-rank {
       color: $gray-dark;
+    }
+    li.item {
+      padding: $padding-small-vertical 0;
     }
   }
 
@@ -21,6 +22,13 @@
     }
     ul.detail {
       margin-left: 80px;
+    }
+  }
+
+  .spell-effect {
+    .item {
+      padding: $padding-small-vertical 0;
+      display: block;
     }
   }
 

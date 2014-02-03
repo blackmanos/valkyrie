@@ -7,7 +7,7 @@
       .row
         .col-lg-8.info
           = wow_icon(@spell.icon.name, 56)
-          %ul.detail
+          %ul.detail.list-unstyled
             %li
               %h4= @spell.name
               - unless @spell.rank.blank?
@@ -35,8 +35,34 @@
                     = t('wow.tooltip_cooldown', count: @spell.cooldown)
             - if @spell.level > 0
               %li= t('wow.tooltip_required_level', level: @spell.level)
+            - if @spell.need_reagents?
+              %li
+                = "#{t('wow.reagents')}: "
+                = reagents_links(@spell)
+            - if @spell.need_tools?
+              %li
+                = "#{t('wow.tools')}: "
+                = tools_links(@spell)
             - unless @spell.tooltip.blank?
               %li.yellow= @spell.tooltip
+      - if @spell.need_reagents? || @spell.need_tools?
+        .row
+          - if @spell.need_reagents?
+            .col-lg-4
+              %h3= t('wow.reagents')
+              %ul.detail.list-unstyled
+                - (1..8).each_with_index do |i|
+                  - unless @spell.reagents(i).nil?
+                    %li.item
+                      = wow_item_link(@spell.reagents(i), @spell.reagent_counts(i))
+          - if @spell.need_tools?
+            .col-lg-4
+              %h3= t('wow.tools')
+              %ul.detail.list-unstyled
+                - (1..2).each_with_index do |i|
+                  - unless @spell.tools(i).nil?
+                    %li.item= wow_item_link(@spell.tools(i))
+
     .col-lg-4
   %hr
   - unless @spell.buff.blank?

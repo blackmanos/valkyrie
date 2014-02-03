@@ -26,3 +26,10 @@
     @include make-background-image($color, $image, 1024);
   }
 }
+
+@mixin link-emphasis-variant($color) {
+  color: $color;
+  &:hover {
+    color: darken($color, 10%);
+  }
+}
