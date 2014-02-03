@@ -24,9 +24,9 @@
   }
 
   .icon-overlay {
-    @include transition(color .2s);
+    @include transition(background-color .2s);
     &:hover, &:focus {
-      background-color: $gray-light;
+      background-color: $gray-pale;
     }
   }
 }
