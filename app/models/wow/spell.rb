@@ -307,7 +307,7 @@ class Wow::Spell < ActiveRecord::Base
   end
 
   def tooltip
-    if tooltip_en.blank?
+    if tooltip_en.blank? and !tooltip_original_en.blank?
       self.tooltip_en = replace_blizzard_tokens(tooltip_original_en)
       self.save
     end
@@ -315,7 +315,7 @@ class Wow::Spell < ActiveRecord::Base
   end
 
   def buff
-    if buff_en.blank?
+    if buff_en.blank? and !buff_original_en.blank?
       self.buff_en = replace_blizzard_tokens(buff_original_en)
       self.save
     end
