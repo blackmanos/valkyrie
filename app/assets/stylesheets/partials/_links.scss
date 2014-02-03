@@ -3,14 +3,36 @@
     &.icon-frame {
       float: left;
       margin-right: $padding-small-vertical;
+      position: relative;
+      .items-count {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 2px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 0.2em black, 0 0 0.2em black, 0 0 0.2em black;
+      }
     }
     &.link-content {
       line-height: 22px;
+    }
+    &.frame-18 {
+      .items-count {
+        font-size: 11px;
+        line-height: 11px;
+        margin: 1px;
+        text-shadow: 0 0 0.2em black, 0 0 0.2em black, 0 0 0.2em black;
+      }
     }
   }
 
   &.yellow {
     color: $yellow;
+  }
+
+  &.quality-1 {
+    color: white;
   }
 
   &:hover {

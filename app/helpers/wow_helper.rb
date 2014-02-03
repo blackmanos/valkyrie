@@ -21,9 +21,21 @@ module WowHelper
     item = if id.is_a?(Wow::Item)
                     id
                   else
-                    Wow::Item.find(id)
+                    Wow::Item.eager_load(:icon).find(id)
                   end
-    wow_link(item, item.icon.name, item.quality)
+    if count > 1
+      link_to item, class: "quality-#{item.quality} wow-link" do
+        html = wow_icon(item.icon.name, 18) do
+          content_tag :div, class: "frame-18 icon-overlay" do
+            content_tag :div, count, class: "items-count"
+          end
+        end
+        html << content_tag(:span, item.to_s, class: 'link-content')
+        html.html_safe
+      end
+    else
+      wow_link(item, item.icon.name, "quality-#{item.quality}")
+    end
   rescue Exception
     content_tag(:span, class: 'yellow') do
       if count > 1
@@ -35,10 +47,10 @@ module WowHelper
   end
 
   def wow_game_object_link(id)
-    game_object = if id.is_a?(Wow::World::GameObject)
+    game_object = if id.is_a?(Wow::GameObject)
                    id
                  else
-                   Wow::World::GameObject.find(id)
+                   Wow::GameObject.find(id)
                  end
     wow_link(game_object)
   rescue Exception
@@ -46,10 +58,10 @@ module WowHelper
   end
 
   def wow_npc_link(id)
-    npc = if id.is_a?(Wow::World::Creature)
+    npc = if id.is_a?(Wow::Creature)
                     id
                   else
-                    Wow::World::Creature.find(id)
+                    Wow::Creature.find(id)
                   end
     wow_link(npc)
   rescue Exception
