@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202171308) do
+ActiveRecord::Schema.define(version: 20140203104827) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -200,14 +200,16 @@ ActiveRecord::Schema.define(version: 20140202171308) do
     t.integer "spell_icon_id"
     t.string  "name_en"
     t.string  "rank_en"
-    t.string  "tooltip_en",                      limit: 512
-    t.string  "buff_en"
+    t.string  "tooltip_original_en",             limit: 512
+    t.string  "buff_original_en"
     t.integer "power_cost_percent"
     t.integer "affected_target_level"
     t.integer "targets"
     t.float   "dmg_multiplier_1"
     t.float   "dmg_multiplier_2"
     t.float   "dmg_multiplier_3"
+    t.string  "tooltip_en"
+    t.string  "buff_en"
   end
 
 end

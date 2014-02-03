@@ -23,15 +23,13 @@ module Wow::SpellsHelper
     html << " (#{t("wow.schools.#{spell.school}")})" if id == 2 && spell.resistance_id
 
     if spell.effect_radius(i) > 0
-      radius = Wow::Spell::Radius.find(spell.effect_radius(i)).base
-      small << "#{I18n.t('wow.radius')}: #{I18n.t('wow.range_with_unit', count: radius)}"
+      small << "#{I18n.t('wow.radius')}: #{I18n.t('wow.range_with_unit', count: spell.radius(i))}"
     end
 
     small << "#{I18n.t('wow.value')}: #{spell.effect_base_points(i).to_i + 1}" if spell.effect_base_points(i) > 0 and spell.effect_item_type(i) == 0
 
     if spell.effect_amplitude(i) > 0
-      interval = (spell.effect_amplitude(i) % 1000 > 0) ? (spell.effect_amplitude(i) / 1000.0) : (spell.effect_amplitude(i) / 1000)
-      small << "#{I18n.t('wow.interval')}: #{I18n.t('wow.duration', count: interval)}"
+      small << "#{I18n.t('wow.interval')}: #{I18n.t('wow.duration', count: spell.amplitude(i))}"
     end
 
     if aura > 0 and !spell.aura_name(aura).nil?

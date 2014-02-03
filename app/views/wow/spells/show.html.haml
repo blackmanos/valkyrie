@@ -35,11 +35,11 @@
                     = t('wow.tooltip_cooldown', count: @spell.cooldown)
             - if @spell.level > 0
               %li= t('wow.tooltip_required_level', level: @spell.level)
-            - unless @spell.tooltip_en.blank?
-              %li.yellow= @spell.tooltip_en
+            - unless @spell.tooltip.blank?
+              %li.yellow= @spell.tooltip
     .col-lg-4
   %hr
-  - unless @spell.buff_en.blank?
+  - unless @spell.buff.blank?
     %h3= t('wow.aura')
     .row
       .col-lg-3
@@ -48,7 +48,7 @@
             %h4.yellow= @spell.name
             - if @spell.dispel_type_id > 0
               %h4.yellow.pull-right= @spell.dispel_type.name_en
-          %li= @spell.buff_en
+          %li= @spell.buff
           - if @spell.duration.to_i > 0
             %li.yellow=t('wow.tooltip_duration_left', count: @spell.duration.to_i)
   %h3=t('wow.spell_description')

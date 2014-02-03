@@ -282,6 +282,9 @@ class Wow::Spell < ActiveRecord::Base
       '',
       'Require Skill'
   ]
+
+  BLIZZARD_TOKENS_REGEXP = /\$+(?:([\/,*])?(\d+);)?(\d+)?([A-z])([1-3]*)(([A-z, ]*):([A-z, ]*);)?/
+
   paginates_per 25
 
   self.table_name_prefix = 'wow_'
@@ -303,8 +306,29 @@ class Wow::Spell < ActiveRecord::Base
     rank_en
   end
 
+  def tooltip
+    if tooltip_en.blank?
+      self.tooltip_en = replace_blizzard_tokens(tooltip_original_en)
+      self.save
+    end
+    tooltip_en
+  end
+
+  def buff
+    if buff_en.blank?
+      self.buff_en = replace_blizzard_tokens(buff_original_en)
+      self.save
+    end
+    buff_en
+  end
+
   def school
     SCHOOLS[self[:resistance_id]]
+  end
+
+  def radius(i)
+    radius_id = self.effect_radius(i)
+    Wow::Spell::Radius.find(radius_id).base
   end
 
   def cooldown
@@ -315,6 +339,18 @@ class Wow::Spell < ActiveRecord::Base
     end
   end
 
+  def amplitude(i)
+    if effect_amplitude(i) % 1000 > 0
+      effect_amplitude(i) / 1000.0
+    else
+      effect_amplitude(i) / 1000
+    end
+  end
+
+  def real_duration(i)
+    duration.to_i / (effect_amplitude(i) > 0 ? effect_amplitude(i)/1000 : 5)
+  end
+
   def effect_name(i)
     EFFECTS[i]
   end
@@ -323,11 +359,69 @@ class Wow::Spell < ActiveRecord::Base
     AURA_NAMES[i]
   end
 
-  %w(id misc_value radius aura base_points item_type amplitude trigger_spell).each do |meth|
+  %w(id misc_value radius aura base_points item_type amplitude trigger_spell points_per_combo_point chain_target).each do |meth|
     define_method("effect_#{meth}") { |i| self["effect_#{i}_#{meth}".to_sym] }
   end
 
   def to_s
     name
+  end
+
+  def replace_blizzard_tokens(string)
+    string.gsub(BLIZZARD_TOKENS_REGEXP) do
+      i = $5.blank? ? 1 : $5.to_i
+      token = $4.downcase
+      spell = self
+      spell = self.class.find($3) unless $3.blank?
+      value = ''
+      case token
+        when 'z'
+          return '[Home]'
+        when 'l'
+          count = spell.amplitude(i)
+          value =  if (count == 1 || count =~ /^1(\.0+)?$/)
+                     $7
+                   else
+                     $8
+                   end
+        when 'g'
+          value = "[#{$6}]"
+        when 'h'
+          value = spell.proc_chance
+        when 'u'
+          return ''
+        when 'v'
+          value = spell.affected_target_level
+        when 'q'
+          value = spell.effect_misc_value(i)
+        when 'i'
+          value = (spell.targets > 0) ? spell.targets : 'nearby'
+        when 'b'
+          value = spell.effect_points_per_combo_point(i)
+        when 'm', 's'
+          value = spell.effect_base_points(i) + 1
+        when 'a'
+          value = spell.radius(i)
+        when 'd'
+          value = "#{spell.duration.to_i} sec"
+        when 'o'
+          value = spell.real_duration(i) * (spell.effect_base_points(i) + 1)
+        when 't'
+          value = spell.amplitude(i)
+        when 'n'
+          value = spell.proc_charges
+        when 'x'
+          value = spell.chain_target(i)
+      end
+
+      unless $2.blank?
+        if $1 == '*'
+          value = (value+1) * $2
+        else
+          value = (value+1) / $2
+        end
+      end
+      value
+    end
   end
 end
