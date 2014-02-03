@@ -116,7 +116,4 @@
             = wow_spell_effect_info(@spell, i)
 
 
-- if Rails.env == 'development'
-  %h3{'data-toggle' => 'collapse', 'data-target' => '#debug', 'style' => 'cursor: pointer'}=t('debug_info')
-  %pre#debug.pre-scrollable.collapse.in
-    = JSON.pretty_generate(@spell.attributes)
+= debug(@spell)
