@@ -6,9 +6,9 @@
   %tbody
     - @spells.each do |spell|
       %tr
-        %td.icon-cell= link_to wow_icon(spell.icon.name), game_spell_path(spell)
+        %td.icon-cell= link_to wow_icon(spell.icon.name), spell
         %td
-          = link_to spell.name, game_spell_path(spell), class: 'spell'
+          = link_to spell.name, spell, class: 'yellow wow-link'
           - unless spell.rank.blank?
             %p= spell.rank
         %td

@@ -326,4 +326,8 @@ class Wow::Spell < ActiveRecord::Base
   %w(id misc_value radius aura base_points item_type amplitude trigger_spell).each do |meth|
     define_method("effect_#{meth}") { |i| self["effect_#{i}_#{meth}".to_sym] }
   end
+
+  def to_s
+    name
+  end
 end

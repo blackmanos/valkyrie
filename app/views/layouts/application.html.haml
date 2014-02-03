@@ -39,8 +39,10 @@
         .sitemap
         .lower-footer
           .copyright
-            %a.pull-right{href: '#'}
-              %span= I18n.locale.to_s == 'en' ? 'Русский' : 'English'
+            - if I18n.locale.to_s == 'en'
+              = link_to 'Русский', "#{ENV['russian_website_url']}#{request.env['PATH_INFO']}", class: 'pull-right'
+            - else
+              = link_to 'English', "#{ENV['english_website_url']}#{request.env['PATH_INFO']}", class: 'pull-right'
             %span.legal-links
               %a{href: '#'}= t('server_rules')
               %a{href: '#'}= t('contacts')

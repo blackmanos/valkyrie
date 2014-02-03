@@ -9,6 +9,9 @@
   border: 1px solid #434445;
   border-bottom-color: #2f3032;
   border-top-color: #b1b2b4;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
   img {
     display: block;
     vertical-align: bottom;
@@ -20,10 +23,16 @@
     @include box-shadow(black 0 0 10px);
   }
 
-  @each $size in 12, 14, 18, 28, 36, 50, 56 {
-    &.frame-#{$size} {
-      @include square(1px * $size+4);
+  .icon-overlay {
+    @include transition(color .2s);
+    &:hover, &:focus {
+      background-color: $gray-light;
     }
+  }
+}
+@each $size in 12, 14, 18, 27, 36, 50, 56 {
+  .frame-#{$size} {
+    @include square(1px * $size);
   }
 }
 

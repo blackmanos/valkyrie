@@ -1,6 +1,5 @@
 class Wow::SpellsController < ApplicationController
-  add_crumb(I18n.t('game')) { |instance| instance.send :root_path }
-  add_crumb(I18n.t('wow.spells')) { |instance| instance.send :game_spells_path }
+  before_action :add_crumbs
 
   def index
     @search = Wow::Spell.search params[:q]
@@ -11,5 +10,10 @@ class Wow::SpellsController < ApplicationController
     @spell = Wow::Spell.unscoped.eager_load(:icon, :range, :cast_time, :dispel_type, :duration, :mechanic).find params[:id]
 
     add_crumb @spell.name, @spell
+  end
+
+  def add_crumbs
+    add_crumb(I18n.t('game'), root_path )
+    add_crumb(I18n.t('wow.spells'), wow_spells_path)
   end
 end

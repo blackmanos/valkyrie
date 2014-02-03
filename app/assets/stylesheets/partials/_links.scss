@@ -1,5 +1,26 @@
-.spell {
-  color: $yellow;
+.wow-link {
+  span {
+    &.icon-frame {
+      float: left;
+      margin-right: $padding-small-vertical;
+    }
+    &.link-content {
+      line-height: 22px;
+    }
+  }
+
+  &.yellow {
+    color: $yellow;
+  }
+
+  &:hover {
+    .icon-overlay {
+      background-color: $gray-light;
+    }
+  }
+}
+
+a.wow-link.yellow {
   &:hover, &:focus {
     color: white;
   }
