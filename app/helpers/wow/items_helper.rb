@@ -1,0 +1,2 @@
+module Wow::ItemsHelper
+end

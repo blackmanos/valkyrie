@@ -18,10 +18,10 @@ module WowHelper
   end
 
   def wow_item_link(id, count = 1)
-    item = if id.is_a?(Wow::World::Item)
+    item = if id.is_a?(Wow::Item)
                     id
                   else
-                    Wow::World::Item.find(id)
+                    Wow::Item.find(id)
                   end
     wow_link(item, item.icon.name, item.quality)
   rescue Exception

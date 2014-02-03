@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203152850) do
+ActiveRecord::Schema.define(version: 20140203160635) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -93,6 +93,10 @@ ActiveRecord::Schema.define(version: 20140203152850) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "wow_icons", force: true do |t|
+    t.string "icon"
+  end
 
   create_table "wow_items", force: true do |t|
     t.integer "class_id",                    limit: 1

@@ -10,6 +10,7 @@ Valkyrie::Application.routes.draw do
     resources :spells, only: [:show, :index] do
     #  collection { post :search, to: 'spells#index' }
     end
+    resources :items, only: [:show, :index]
   end
 
   # The priority is based upon order of creation:
