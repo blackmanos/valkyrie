@@ -55,7 +55,7 @@
   %table.table.table-bordered
     %tr
       %td.col-lg-2
-        =t('cost')
+        = t('cost')
       %td.col-lg-4
         - if @spell.power_cost > 0
           = t('wow.tooltip_mana_cost', mana: @spell.power_cost)
@@ -71,17 +71,12 @@
         - else
           = t('none')
     %tr
-      %td
-        =t('wow.range')
-      %td
-        ="#{t('wow.range_with_unit', count: @spell.range.max)} (#{@spell.range.name_en})"
-      %td
-        =t('wow.school')
-      %td
-        = t("wow.schools.#{@spell.school}")
+      %td= t('wow.range')
+      %td= "#{t('wow.range_with_unit', count: @spell.range.max)} (#{@spell.range.name_en})"
+      %td= t('wow.school')
+      %td= t("wow.schools.#{@spell.school}")
     %tr
-      %td
-        =t('wow.cast')
+      %td= t('wow.cast_time')
       %td
         - if @spell.spell_cast_time_id != 1
           = t('wow.duration', count: @spell.cast_time.to_i)
@@ -89,23 +84,20 @@
           = t('wow.tooltip_spell_instant')
         - else
           = t('wow.tooltip_spell_channel')
-      %td
-        =t('wow.mechanic')
+      %td= t('wow.mechanic')
       %td
         - if @spell.mechanic_id > 0
           = @spell.mechanic.name_en
         - else
           = t('none')
     %tr
-      %td
-        =t('wow.cooldown')
+      %td= t('wow.cooldown')
       %td
         - if @spell.cooldown > 0
           = t('wow.duration', count: @spell.cooldown)
         - else
           = t('none')
-      %td
-        =t('wow.dispel_type')
+      %td= t('wow.dispel_type')
       %td
         - if @spell.dispel_type_id > 0
           = @spell.dispel_type.name_en
@@ -113,20 +105,18 @@
           = t('none')
     - if @spell.targets > 0
       %tr
-        %td
-          =t('wow.max_targets')
+        %td= t('wow.max_targets')
         %td{colspan: 3}
           = @spell.targets
     - (1..3).each_with_index do |i|
       - if @spell.effect_id(i) > 0
         %tr
-          %td
-            = t('wow.effect', num: i)
+          %td= t('wow.effect', num: i)
           %td.spell-effect{colspan: 3}
             = wow_spell_effect_info(@spell, i)
 
 
 - if Rails.env == 'development'
-  %h3=t('debug_info')
-  %pre.pre-scrollable
+  %h3{'data-toggle' => 'collapse', 'data-target' => '#debug', 'style' => 'cursor: pointer'}=t('debug_info')
+  %pre#debug.pre-scrollable.collapse.in
     = JSON.pretty_generate(@spell.attributes)

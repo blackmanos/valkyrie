@@ -26,7 +26,7 @@ ru:
   server_rules: "Правила Сервера"
   wow:
     aura: "Аура"
-    cast: "Применение"
+    cast_time: "Применение"
     cooldown: "Восстановление"
     dispel_type: "Тип рассеивания"
     effect: "Эффект #%{num}"

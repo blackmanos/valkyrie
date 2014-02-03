@@ -77,6 +77,6 @@ module WowHelper
 
   def wow_spell_link(id)
     spell = Wow::Spell.unscoped.eager_load(:icon).find(id)
-    link_to "#{wow_icon(spell.icon.name, 18)} #{spell.name}".html_safe , wow_spell_path(spell), class: 'spell'
+    link_to "#{wow_icon(spell.icon.name, 18)} #{spell.name}".html_safe , game_spell_path(spell), class: 'spell'
   end
 end

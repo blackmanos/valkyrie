@@ -1,14 +1,12 @@
 Valkyrie::Application.routes.draw do
-  get "welcome/index"
-
   devise_for :users
 
-  scope '/wow/:realm', as: :wow, module: :wow  do
+  scope '/game/:realm', as: :game, module: :wow  do
     get 'statistic/pvp' => 'statistic#current', as: 'pvp_statistic'
     resources :characters, only: [:show]
   end
 
-  namespace :wow do
+  namespace :game, module: :wow do
     resources :spells, only: [:show, :index] do
     #  collection { post :search, to: 'spells#index' }
     end
