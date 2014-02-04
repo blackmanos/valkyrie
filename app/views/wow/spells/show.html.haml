@@ -15,10 +15,7 @@
                   %h4.spell-rank= @spell.rank
             - if @spell.power_cost > 0 || @spell.range.max > 0 || @spell.power_cost_percent > 0
               %li
-                - if @spell.power_cost > 0
-                  = t('wow.tooltip_mana_cost', mana: @spell.power_cost)
-                - elsif @spell.power_cost_percent > 0
-                  = t('wow.tooltip_mana_cost_percent', percent: @spell.power_cost_percent)
+                = power_cost_tooltip(@spell)
                 - if @spell.range.max > 0
                   .pull-right
                     = t('wow.tooltip_spell_range', range: @spell.range.max)
@@ -83,10 +80,11 @@
       %td.col-lg-2
         = t('cost')
       %td.col-lg-4
-        - if @spell.power_cost > 0
-          = t('wow.tooltip_mana_cost', mana: @spell.power_cost)
-        - elsif @spell.power_cost_percent > 0
-          = t('wow.tooltip_mana_cost_percent', percent: @spell.power_cost_percent)
+        - if @spell.power_cost > 0 || @spell.power_cost_percent > 0
+          - if @spell.power_cost > 0 && @spell.power_type > 3
+            = t('none')
+          - else
+            = power_cost_tooltip(@spell)
         - else
           = t('none')
       %td.col-lg-2

@@ -440,9 +440,9 @@ class Wow::Spell < ActiveRecord::Base
 
       unless $2.blank?
         if $1 == '*'
-          value = (value+1) * $2
+          value = (value+1) * $2.to_i
         else
-          value = (value+1) / $2
+          value = (value+1) / $2.to_i
         end
       end
       value

@@ -74,8 +74,35 @@ module WowHelper
             else
                 Wow::Spell.unscoped.eager_load(:icon).find(id)
             end
-    wow_link(spell, spell.icon.name, 'spell')
+    wow_link(spell, spell.icon.name, 'spell yellow')
   rescue Exception
     content_tag(:span, "Unknown Spell #{id}", class: 'yellow wow-link')
+  end
+
+  def power_cost_tooltip(spell)
+    type = ''
+    cost = spell.power_cost
+    case spell.power_type
+      when 0
+        type = 'mana'
+      when 1
+        type = 'rage'
+        cost = cost / 10
+      when 2
+        type = 'focus'
+      when 3
+        type = 'energy'
+      else
+        type = 'health'
+        return if cost > 0
+    end
+
+    if cost > 0
+      t("wow.tooltip_#{type}_cost", count: cost)
+    elsif spell.power_cost_percent > 0
+      t("wow.tooltip_#{type}_cost_percent", percent: spell.power_cost_percent)
+    else
+      ''
+    end
   end
 end
