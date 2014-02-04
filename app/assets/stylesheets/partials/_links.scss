@@ -28,6 +28,7 @@
   }
 
   &.yellow { @include link-emphasis-variant($yellow); }
+  &.default { @include link-emphasis-variant($text-color); }
   &.quality-0 { @include link-emphasis-variant(#9d9d9d); } /* poor (gray) */
   &.quality-1 { @include link-emphasis-variant(#ffffff); } /* common (white) */
   &.quality-2 { @include link-emphasis-variant(#1eff00); } /* uncommon (green) */

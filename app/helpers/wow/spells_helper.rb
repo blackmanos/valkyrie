@@ -67,8 +67,8 @@ module Wow::SpellsHelper
     links = []
     (1..8).each_with_index do |i|
       unless spell.reagents(i).nil?
-        link = link_to(spell.reagents(i).name, spell.reagents(i), class: 'wow-link quality-1')
-        link << content_tag(:span, " (#{spell.reagent_counts(i)})", class: 'wow-link quality-1') if spell.reagent_counts(i) > 1
+        link = link_to(spell.reagents(i).name, spell.reagents(i), class: 'wow-link default')
+        link << content_tag(:span, " (#{spell.reagent_counts(i)})", class: 'wow-link default') if spell.reagent_counts(i) > 1
         links << link
       end
     end
@@ -78,7 +78,7 @@ module Wow::SpellsHelper
   def tools_links(spell)
     links = []
     (1..2).each_with_index do |i|
-      links << link_to(spell.tools(i).name, spell.tools(i), class: 'wow-link quality-1') unless spell.tools(i).nil?
+      links << link_to(spell.tools(i).name, spell.tools(i), class: 'wow-link default') unless spell.tools(i).nil?
     end
     links.join(', ').html_safe
   end

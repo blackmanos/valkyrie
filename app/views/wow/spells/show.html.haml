@@ -63,9 +63,9 @@
     .col-lg-4
   %hr
   - unless @spell.buff.blank?
-    %h3= t('wow.aura')
     .row
-      .col-lg-3
+      .col-lg-4
+        %h3= t('wow.aura')
         %ul.detail.list-unstyled
           %li
             %h4.yellow= @spell.name
