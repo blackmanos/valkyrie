@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204072440) do
+ActiveRecord::Schema.define(version: 20140204172222) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -241,6 +241,11 @@ ActiveRecord::Schema.define(version: 20140204072440) do
     t.integer "base"
   end
 
+  create_table "wow_spell_focus_objects", force: true do |t|
+    t.string "name_ru"
+    t.string "name_en"
+  end
+
   create_table "wow_spell_icons", force: true do |t|
     t.string "name"
   end
@@ -352,6 +357,7 @@ ActiveRecord::Schema.define(version: 20140204072440) do
     t.string  "tooltip_original_ru",             limit: 512
     t.string  "buff_ru"
     t.string  "buff_original_ru"
+    t.integer "focus_object_id"
   end
 
 end

@@ -295,6 +295,7 @@ class Wow::Spell < ActiveRecord::Base
   belongs_to :dispel_type
   belongs_to :duration
   belongs_to :mechanic
+  belongs_to :focus_object
 
   def name
     self["name_#{I18n.locale}".to_sym]

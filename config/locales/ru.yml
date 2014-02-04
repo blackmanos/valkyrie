@@ -50,6 +50,7 @@ ru:
       many: "%{count} метров"
       other: "%{count} метра"
     reagents: "Материалы"
+    requires_game_object: "Требуется находиться рядом с: %{game_object}"
     school: "Школа"
     schools:
       physical: "Физический урон"

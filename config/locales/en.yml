@@ -57,6 +57,7 @@ en:
       one: "%{count} yard"
       other: "%{count} yards"
     reagents: "Reagents"
+    requires_game_object: "Requires: %{game_object}"
     school: "School"
     schools:
       physical: "Physical"
