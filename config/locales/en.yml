@@ -20,7 +20,9 @@ en:
   deleted_characters:  "Deleted Characters"
   enter_name: "Enter Name..."
   general: "General"
+  nearby: "nearby"
   search: "Search"
+  sec: "sec"
   devise:
     links:
       logout: "Log out"

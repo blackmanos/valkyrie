@@ -296,30 +296,28 @@ class Wow::Spell < ActiveRecord::Base
   belongs_to :duration
   belongs_to :mechanic
 
-  default_scope { order('name_en ASC') }
-
   def name
-    name_en
+    self["name_#{I18n.locale}".to_sym]
   end
 
   def rank
-    rank_en
+    self["rank_#{I18n.locale}".to_sym]
   end
 
   def tooltip
-    if tooltip_en.blank? and !tooltip_original_en.blank?
-      self.tooltip_en = replace_blizzard_tokens(tooltip_original_en)
+    if self["tooltip_#{I18n.locale}".to_sym].blank? and !self["tooltip_original_#{I18n.locale}".to_sym].blank?
+      self["tooltip_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["tooltip_original_#{I18n.locale}".to_sym])
       self.save
     end
-    tooltip_en
+    self["tooltip_#{I18n.locale}".to_sym]
   end
 
   def buff
-    if buff_en.blank? and !buff_original_en.blank?
-      self.buff_en = replace_blizzard_tokens(buff_original_en)
+    if self["buff_#{I18n.locale}".to_sym].blank? and !self["buff_original_#{I18n.locale}".to_sym].blank?
+      self["buff_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["buff_original_#{I18n.locale}".to_sym])
       self.save
     end
-    buff_en
+    self["buff_#{I18n.locale}".to_sym]
   end
 
   def school
@@ -421,7 +419,7 @@ class Wow::Spell < ActiveRecord::Base
         when 'q'
           value = spell.effect_misc_value(i)
         when 'i'
-          value = (spell.targets > 0) ? spell.targets : 'nearby'
+          value = (spell.targets > 0) ? spell.targets : I18n.t(:nearby)
         when 'b'
           value = spell.effect_points_per_combo_point(i)
         when 'm', 's'
@@ -429,7 +427,7 @@ class Wow::Spell < ActiveRecord::Base
         when 'a'
           value = spell.radius(i)
         when 'd'
-          value = "#{spell.duration.to_i} sec"
+          value = "#{spell.duration.to_i} #{I18n.t(:sec)}"
         when 'o'
           value = spell.real_duration(i) * (spell.effect_base_points(i) + 1)
         when 't'

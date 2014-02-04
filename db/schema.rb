@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203160635) do
+ActiveRecord::Schema.define(version: 20140204072440) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -345,6 +345,13 @@ ActiveRecord::Schema.define(version: 20140203160635) do
     t.float   "dmg_multiplier_3"
     t.string  "tooltip_en",                      limit: 512
     t.string  "buff_en"
+    t.integer "power_type"
+    t.string  "name_ru"
+    t.string  "rank_ru"
+    t.string  "tooltip_ru",                      limit: 512
+    t.string  "tooltip_original_ru",             limit: 512
+    t.string  "buff_ru"
+    t.string  "buff_original_ru"
   end
 
 end
