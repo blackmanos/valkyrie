@@ -1,5 +1,7 @@
-@import '../partials/mixins';
 @import '../partials/variables';
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import '../partials/mixins';
 
 @include make-background-images(#330404, 'molten-core');
 
@@ -31,5 +33,35 @@
       display: block;
     }
   }
+  .quick-facts {
+    position: relative;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+    .blur-overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      -webkit-filter: blur(5px);
+      top: 0;
+      left: 0;
+      border-radius: $border-radius-base;
+    }
+    .facts-container {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      ul {
+        padding-left: $padding-large-horizontal;
+      }
+    }
+  }
+}
 
+@media (max-width: $screen-desktop) {
+  #spell {
+    .blur-overlay {
+      background-image: none !important;
+    }
+  }
 }

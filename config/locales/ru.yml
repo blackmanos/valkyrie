@@ -26,6 +26,7 @@ ru:
   game: "Игра"
   forums: "Форумы"
   server_rules: "Правила Сервера"
+  learn_more: "Подробнее"
   wow:
     aura: "Аура"
     cast_time: "Применение"
@@ -84,4 +85,5 @@ ru:
     tooltip_spell_channel: "Направляемое"
     tooltip_spell_cast_time: "Применение: %{cast_time} сек."
     value: "Значение"
+    quick_facts: "Краткая информация"
 

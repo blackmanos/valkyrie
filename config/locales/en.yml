@@ -37,6 +37,7 @@ en:
   game: "Game"
   forums: "Forums"
   server_rules: "Server Rules"
+  learn_more: "Learn More"
   wow:
     aura: "Buff"
     cast_time: "Cast Time"
@@ -73,7 +74,7 @@ en:
     tooltip_duration_left:
       one: "%{count} second left"
       other: "%{count} seconds left"
-    tooltip_mana_cost: "%{mana} mana"
+    tooltip_mana_cost: "%{count} mana"
     tooltip_rage_cost: "%{count} rage"
     tooltip_focus_cost: "%{count} focus"
     tooltip_energy_cost: "%{count} energy"
@@ -89,3 +90,4 @@ en:
     tooltip_spell_channel: "Channeled"
     tooltip_spell_cast_time: "%{cast_time} sec cast"
     value: "Value"
+    quick_facts: "Quick Facts"

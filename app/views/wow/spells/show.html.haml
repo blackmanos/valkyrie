@@ -3,7 +3,7 @@
 
 #spell
   .row
-    .col-lg-8
+    .col-md-8
       .row
         .col-lg-8.info
           = wow_icon(@spell.icon.name, 56)
@@ -45,7 +45,7 @@
       - if @spell.need_reagents? || @spell.need_tools?
         .row
           - if @spell.need_reagents?
-            .col-lg-4
+            .col-lg-4.col-md-6
               %h3= t('wow.reagents')
               %ul.detail.list-unstyled
                 - (1..8).each_with_index do |i|
@@ -53,14 +53,24 @@
                     %li.item
                       = wow_item_link(@spell.reagents(i), @spell.reagent_counts(i))
           - if @spell.need_tools?
-            .col-lg-4
+            .col-lg-4.col-md-6
               %h3= t('wow.tools')
               %ul.detail.list-unstyled
                 - (1..2).each_with_index do |i|
                   - unless @spell.tools(i).nil?
                     %li.item= wow_item_link(@spell.tools(i))
 
-    .col-lg-4
+    .col-md-4
+      .quick-facts
+        .blur-overlay
+        .facts-container.well
+          %h4= t('wow.quick_facts')
+          %ul
+            - if @spell.level > 0
+              %li= t('wow.tooltip_required_level', level: @spell.level)
+          %h4= t('learn_more')
+          = wowhead_link('spell', @spell.id)
+
   %hr
   - unless @spell.buff.blank?
     .row
@@ -74,19 +84,13 @@
           %li= @spell.buff
           - if @spell.duration.to_i > 0
             %li.yellow=t('wow.tooltip_duration_left', count: @spell.duration.to_i)
-  %h3=t('wow.spell_description')
+  %h3= t('wow.spell_description')
   %table.table.table-bordered
     %tr
       %td.col-lg-2
         = t('cost')
       %td.col-lg-4
-        - if @spell.power_cost > 0 || @spell.power_cost_percent > 0
-          - if @spell.power_cost > 0 && @spell.power_type > 3
-            = t('none')
-          - else
-            = power_cost_tooltip(@spell)
-        - else
-          = t('none')
+        = power_cost_tooltip(@spell) || t('none')
       %td.col-lg-2
         = t('duration')
       %td.col-lg-4

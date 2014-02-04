@@ -102,7 +102,12 @@ module WowHelper
     elsif spell.power_cost_percent > 0
       t("wow.tooltip_#{type}_cost_percent", percent: spell.power_cost_percent)
     else
-      ''
+      nil
     end
+  end
+
+  def wowhead_link(category, id)
+    prefix = (locale == :ru) ? 'ru' : 'www'
+    link_to 'wowhead', "http://#{prefix}.wowhead.com/#{category}=#{id}", class: 'yellow wow-link', target: '_blank'
   end
 end
