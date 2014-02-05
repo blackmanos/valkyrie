@@ -18,7 +18,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 group :development do
-  gem 'haml-rails'
   # Deploy with Capistrano
   # gem 'capistrano'
 
@@ -76,3 +75,5 @@ gem 'sdoc',          group: :doc, require: false
 
 # Breadcrumbs
 gem 'crummy', '~> 1.8.0'
+
+gem 'haml-rails'

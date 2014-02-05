@@ -30,7 +30,7 @@
                 - if @spell.cooldown > 0
                   .pull-right
                     = t('wow.tooltip_cooldown', count: @spell.cooldown)
-            - if @spell.level > 0
+            - if @spell.level?
               %li= t('wow.tooltip_required_level', level: @spell.level)
             - if @spell.need_reagents?
               %li
@@ -66,7 +66,7 @@
         .facts-container.well
           %h4= t('wow.quick_facts')
           %ul
-            - if @spell.level > 0
+            - if @spell.level?
               %li= t('wow.tooltip_required_level', level: @spell.level)
             - if @spell.focus_object_id > 0
               %li= t('wow.requires_game_object', game_object: @spell.focus_object.name)

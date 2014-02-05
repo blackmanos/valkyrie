@@ -307,7 +307,7 @@ class Wow::Spell < ActiveRecord::Base
 
   def tooltip
     if self["tooltip_#{I18n.locale}".to_sym].blank? and !self["tooltip_original_#{I18n.locale}".to_sym].blank?
-      self["tooltip_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["tooltip_original_#{I18n.locale}".to_sym])
+      self["tooltip_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["tooltip_original_#{I18n.locale}".to_sym], 'tooltip')
       self.save
     end
     self["tooltip_#{I18n.locale}".to_sym]
@@ -315,7 +315,7 @@ class Wow::Spell < ActiveRecord::Base
 
   def buff
     if self["buff_#{I18n.locale}".to_sym].blank? and !self["buff_original_#{I18n.locale}".to_sym].blank?
-      self["buff_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["buff_original_#{I18n.locale}".to_sym])
+      self["buff_#{I18n.locale}".to_sym] = replace_blizzard_tokens(self["buff_original_#{I18n.locale}".to_sym], 'buff')
       self.save
     end
     self["buff_#{I18n.locale}".to_sym]
@@ -392,12 +392,24 @@ class Wow::Spell < ActiveRecord::Base
     name
   end
 
-  def replace_blizzard_tokens(string)
+  def replace_blizzard_tokens(string, to_replace)
+    @triggers ||= []
     string.gsub(BLIZZARD_TOKENS_REGEXP) do
       i = $5.blank? ? 1 : $5.to_i
       token = $4.downcase
       spell = self
       spell = self.class.find($3) unless $3.blank?
+      if self.effect_id(i) == 64
+        if to_replace == 'tooltip'
+          @triggers[i] = if self.effect_trigger_spell(i) == spell.id
+                           spell
+                         else
+                           self.class.find(self.effect_trigger_spell(i))
+                         end
+        else
+          spell = @triggers[i]
+        end
+      end
       value = ''
       case token
         when 'z'
@@ -447,6 +459,12 @@ class Wow::Spell < ActiveRecord::Base
         end
       end
       value
+    end
+  end
+
+  class << self
+    def duration_query(id)
+      self.connection.execute(sanitize_sql(["select base from wow_spell_durations where id = ? limit 1", id]))
     end
   end
 end
