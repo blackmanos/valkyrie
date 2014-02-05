@@ -283,7 +283,8 @@ class Wow::Spell < ActiveRecord::Base
       'Require Skill'
   ]
 
-  BLIZZARD_TOKENS_REGEXP = /\$+(?:([\/,*])?(\d+);)?(\d+)?([A-z])([1-3]*)(([A-z, ]*):([A-z, ]*);)?/
+  BLIZZARD_TOKENS_REGEXP = /\$(?:(\d+)?([\/*])(\d+);)?(\d+)?([A-z])([1-3]?)(([^ ].*?):(.*?);)?/
+  #/\$+(?:([\/,*])?(\d+);)?(\d+)?([A-z])([1-3]*)(([A-zА-я, ]*):([A-zА-я, ]*);)?/
 
   paginates_per 25
 
@@ -393,36 +394,24 @@ class Wow::Spell < ActiveRecord::Base
   end
 
   def replace_blizzard_tokens(string, to_replace)
-    @triggers ||= []
     string.gsub(BLIZZARD_TOKENS_REGEXP) do
-      i = $5.blank? ? 1 : $5.to_i
-      token = $4.downcase
+      i = $6.blank? ? 1 : $6.to_i
+      token = $5.downcase
       spell = self
-      spell = self.class.find($3) unless $3.blank?
-      if self.effect_id(i) == 64
-        if to_replace == 'tooltip'
-          @triggers[i] = if self.effect_trigger_spell(i) == spell.id
-                           spell
-                         else
-                           self.class.find(self.effect_trigger_spell(i))
-                         end
-        else
-          spell = @triggers[i]
-        end
+      spell = self.class.find($4) unless $4.blank?
+      spell = self.class.find($1) unless $1.blank?
+      if self.effect_id(i) == 64 && $1.blank? && to_replace == 'buff' && self.effect_trigger_spell(i) != spell.id
+        spell = self.class.find(self.effect_trigger_spell(i))
       end
       value = ''
       case token
         when 'z'
           return '[Home]'
         when 'l'
-          count = spell.amplitude(i)
-          value =  if (count == 1 || count =~ /^1(\.0+)?$/)
-                     $7
-                   else
-                     $8
-                   end
+          count = spell.effect_base_points(i)
+          value =  (count == 1 || count =~ /^1(\.0+)?$/) ? $8 : $9
         when 'g'
-          value = "[#{$6}]"
+          value = "[#{$7}]"
         when 'h'
           value = spell.proc_chance
         when 'u'
@@ -451,11 +440,11 @@ class Wow::Spell < ActiveRecord::Base
           value = spell.chain_target(i)
       end
 
-      unless $2.blank?
-        if $1 == '*'
-          value = (value+1) * $2.to_i
+      unless $3.blank?
+        if $2 == '*'
+          value = (value+1) * $3.to_i
         else
-          value = (value+1) / $2.to_i
+          value = (value+1) / $3.to_i
         end
       end
       value
