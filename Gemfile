@@ -34,7 +34,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  #gem 'debugger'
+  gem 'byebug'
 end
 
 # Use jquery as the JavaScript library

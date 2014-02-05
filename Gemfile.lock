@@ -51,6 +51,9 @@ GEM
     bootstrap-sass (3.1.0.0)
       sass (~> 3.2)
     builder (3.2.2)
+    byebug (2.5.0)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     cancan (1.6.10)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -59,8 +62,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.3.6)
     crummy (1.8.0)
     database_cleaner (1.2.0)
+    debugger-linecache (1.2.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -233,6 +238,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass
+  byebug
   cancan
   coffee-rails (~> 4.0.0)
   crummy (~> 1.8.0)

@@ -59,7 +59,7 @@ class DatabaseConnection < ActiveRecord::Base
   end
 
   def load_aes
-    key = Valkyrie::Application.config.secret_token
+    key = Valkyrie::Application.secrets[:secret_key_base]
     @key ||= Digest::MD5.digest(key) if(key.kind_of?(String) && 16 != key.bytesize)
     @aes ||= OpenSSL::Cipher.new('AES-128-CBC')
   end

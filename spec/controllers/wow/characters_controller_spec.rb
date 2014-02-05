@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Wow::CharactersController do
-
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
-end
+#describe Wow::CharactersController do
+#
+#  describe "GET 'show'" do
+#    it "returns http success" do
+#      get 'show'
+#      response.should be_success
+#    end
+#  end
+#
+#end
