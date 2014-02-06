@@ -21,11 +21,11 @@ module WowHelper
     item = if id.is_a?(Wow::Item)
                     id
                   else
-                    Wow::Item.select(:id, :name, :quality, :display_id).includes(:icon).find(id)
+                    Wow::Item.select(:id, :name, :quality, :display_id).includes(:item_icon).find(id)
                   end
     if count > 1
       link_to item, class: "quality-#{item.quality} wow-link item" do
-        html = wow_icon(item.icon.name, 18) do
+        html = wow_icon(item.icon, 18) do
           content_tag :div, class: "frame-18 icon-overlay" do
             content_tag :div, count, class: "items-count"
           end
@@ -34,7 +34,7 @@ module WowHelper
         html.html_safe
       end
     else
-      wow_link(item, item.icon.name, "quality-#{item.quality} item")
+      wow_link(item, item.icon, "quality-#{item.quality} item")
     end
   rescue Exception
     content_tag(:span, class: 'yellow') do
@@ -72,9 +72,9 @@ module WowHelper
     spell = if id.is_a?(Wow::Spell)
               id
             else
-                Wow::Spell.unscoped.eager_load(:icon).find(id)
+                Wow::Spell.unscoped.eager_load(:spell_icon).find(id)
             end
-    wow_link(spell, spell.icon.name, 'spell yellow')
+    wow_link(spell, spell.icon, 'spell yellow')
   rescue Exception
     content_tag(:span, "Unknown Spell #{id}", class: 'yellow wow-link')
   end

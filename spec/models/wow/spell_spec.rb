@@ -4,8 +4,7 @@ describe Wow::Spell do
   describe 'tooltips and buff formatting' do
     it 'should be valid polymorph' do
       expected_tooltip = 'Transforms the enemy into a sheep, forcing it to wander around for up to 20 sec.'
-      attr = FactoryGirl.attributes_for :polymorph
-      spell = Wow::Spell.create attr
+      spell = FactoryGirl.create :polymorph
       spell.build_duration({base: 20000})
 
       spell.tooltip.should == expected_tooltip
@@ -31,9 +30,25 @@ describe Wow::Spell do
 
       it 'should be valid buff' do
         expected_buff = 'Restores 71 health and 147 mana per second.'
-        @spell.tooltip
         @spell.buff.should == expected_buff
       end
+    end
+  end
+
+  describe 'icons' do
+    it 'should be valid generic spell icon' do
+      spell = FactoryGirl.create :polymorph
+      spell_icon = Wow::Spell::Icon.find(spell.spell_icon_id)
+
+      spell.icon.should == spell_icon.name
+    end
+
+    it 'should be valid effect create item icon' do
+      spell = FactoryGirl.create :craft_spell
+      item = FactoryGirl.create :craft_item
+      spell.effect_1_item_type = item.id
+
+      spell.icon.should == item.icon
     end
   end
 end

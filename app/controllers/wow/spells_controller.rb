@@ -3,11 +3,11 @@ class Wow::SpellsController < ApplicationController
 
   def index
     @search = Wow::Spell.search params[:q]
-    @spells = @search.result.includes(:icon).page(params[:page])
+    @spells = @search.result.includes(:spell_icon).page(params[:page])
   end
 
   def show
-    @spell = Wow::Spell.eager_load(:icon, :range, :cast_time, :dispel_type, :duration, :mechanic, :focus_object).find params[:id]
+    @spell = Wow::Spell.eager_load(:spell_icon, :range, :cast_time, :dispel_type, :duration, :mechanic, :focus_object).find params[:id]
 
     add_crumb @spell.name, @spell
   end

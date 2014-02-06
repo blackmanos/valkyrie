@@ -290,7 +290,7 @@ class Wow::Spell < ActiveRecord::Base
 
   self.table_name_prefix = 'wow_'
 
-  belongs_to :icon, foreign_key: :spell_icon_id
+  belongs_to :spell_icon, class: Wow::Spell::Icon
   belongs_to :range
   belongs_to :cast_time, foreign_key: :spell_cast_time_id
   belongs_to :dispel_type
@@ -372,7 +372,7 @@ class Wow::Spell < ActiveRecord::Base
   end
 
   def reagents(i)
-    @reagents ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: reagents_ids).includes(:icon).all.to_a
+    @reagents ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: reagents_ids).includes(:item_icon).all.to_a
     @reagents.find{ |item| item.id == reagents_ids[i-1] }
   end
 
@@ -381,7 +381,7 @@ class Wow::Spell < ActiveRecord::Base
   end
 
   def tools(i)
-    @tools ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: [tool_1, tool_2]).includes(:icon).all.to_a
+    @tools ||= Wow::Item.select(:id, :name, :quality, :display_id).where(id: [tool_1, tool_2]).includes(:item_icon).all.to_a
     @tools.find{ |item| item.id == self["tool_#{i}".to_sym] }
   end
 
@@ -391,6 +391,16 @@ class Wow::Spell < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def icon
+    (1..3).each_with_index do |i|
+      if self.effect_id(i) == 24
+        item = Wow::Item.eager_load(:item_icon).find(self.effect_item_type(i))
+        return item.icon
+      end
+    end
+    self.spell_icon.name
   end
 
   def replace_blizzard_tokens(string, to_replace)
