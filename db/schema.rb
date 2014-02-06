@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204172222) do
+ActiveRecord::Schema.define(version: 20140206111228) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id", using: :btree
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -212,6 +227,15 @@ ActiveRecord::Schema.define(version: 20140204172222) do
     t.binary  "extra_flags",                 limit: 1
     t.string  "script_name",                 limit: 64
     t.string  "lua_script_name",             limit: 64
+  end
+
+  create_table "wow_npc_trainers", force: true do |t|
+    t.integer "trainer_id"
+    t.integer "spell_id"
+    t.integer "spell_cost"
+    t.integer "required_skill_id"
+    t.integer "required_skill_value"
+    t.integer "required_level"
   end
 
   create_table "wow_spell_cast_times", force: true do |t|
