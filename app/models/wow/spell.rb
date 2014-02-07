@@ -17,7 +17,7 @@ class Wow::Spell < ActiveRecord::Base
 
   has_many :trainers, class_name: 'Wow::Npc::Trainer'
   has_one  :skill_ability, -> { eager_load :skill }
-  delegate :skill, to: :skill_ability
+  delegate :skill, to: :skill_ability, allow_nil: true
 
   has_many :effects
   has_many :reagents

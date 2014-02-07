@@ -67,7 +67,7 @@
               %li= t('wow.tooltip_required_level', level: @spell.level)
             - if @spell.focus_object_id?
               %li= t('wow.requires_game_object', game_object: @spell.focus_object.name)
-            - if @spell.skill.profession?
+            - if !@spell.skill.nil? && @spell.skill.profession?
               %li= "#{t('wow.requires')}: #{@spell.skill.name}(#{@spell.skill_ability.learn_value})"
               %li= "#{t('wow.training_cost')}: #{format_money(@spell.skill_ability.spell_cost)}"
               %li= "#{t('wow.difficulty')}: #{skill_difficulty(@spell.skill_ability)}"
