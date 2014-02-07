@@ -82,4 +82,8 @@ module Wow::SpellsHelper
     end
     links.join(', ').html_safe
   end
+
+  def skill_difficulty(skill_ability)
+    "#{skill_ability.learn_value} #{skill_ability.min_value} #{(skill_ability.min_value + skill_ability.max_value)/2} #{skill_ability.max_value}"
+  end
 end

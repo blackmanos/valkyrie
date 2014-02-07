@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207173232) do
+ActiveRecord::Schema.define(version: 20140207210519) do
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -221,6 +221,33 @@ ActiveRecord::Schema.define(version: 20140207173232) do
     t.integer "required_skill_id"
     t.integer "required_skill_value"
     t.integer "required_level"
+  end
+
+  create_table "wow_skill_abilities", force: true do |t|
+    t.integer "skill_id"
+    t.integer "spell_id"
+    t.integer "race_mask"
+    t.integer "class_mask"
+    t.integer "required_skill_value"
+    t.integer "forward_spell_id"
+    t.integer "learn_on_get_skill"
+    t.integer "max_value"
+    t.integer "min_value"
+    t.integer "required_training_points"
+    t.integer "spell_cost"
+    t.integer "learn_value"
+  end
+
+  add_index "wow_skill_abilities", ["skill_id"], name: "index_wow_skill_abilities_on_skill_id", using: :btree
+  add_index "wow_skill_abilities", ["spell_id"], name: "index_wow_skill_abilities_on_spell_id", using: :btree
+
+  create_table "wow_skills", force: true do |t|
+    t.integer "category_id"
+    t.string  "name_en"
+    t.string  "name_ru"
+    t.string  "description_en"
+    t.string  "description_ru"
+    t.string  "icon_id"
   end
 
   create_table "wow_spell_cast_times", force: true do |t|

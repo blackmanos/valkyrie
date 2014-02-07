@@ -33,6 +33,7 @@ ru:
     cooldown: "Восстановление"
     dispel_type: "Тип рассеивания"
     effect: "Эффект #%{num}"
+    difficulty: "Сложность"
     duration:
       one: "%{count} секунда"
       few: "%{count} секунды"
@@ -51,6 +52,7 @@ ru:
       other: "%{count} метра"
     reagents: "Материалы"
     requires_game_object: "Требуется находиться рядом с: %{game_object}"
+    requires: "Требует"
     school: "Школа"
     schools:
       physical: "Физический урон"
@@ -85,6 +87,7 @@ ru:
     tooltip_spell_instant: "Мгновенное действие"
     tooltip_spell_channel: "Направляемое"
     tooltip_spell_cast_time: "Применение: %{cast_time} сек."
+    training_cost: "Цена обучения"
     value: "Значение"
     quick_facts: "Краткая информация"
 

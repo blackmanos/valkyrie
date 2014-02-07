@@ -110,4 +110,8 @@ module WowHelper
     prefix = (locale == :ru) ? 'ru' : 'www'
     link_to 'wowhead', "http://#{prefix}.wowhead.com/#{category}=#{id}", class: 'yellow wow-link', target: '_blank'
   end
+
+  def format_money(amount)
+    amount
+  end
 end

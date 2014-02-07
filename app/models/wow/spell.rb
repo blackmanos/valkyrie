@@ -15,11 +15,18 @@ class Wow::Spell < ActiveRecord::Base
   belongs_to :mechanic
   belongs_to :focus_object
 
+  has_many :trainers, class_name: 'Wow::Npc::Trainer'
+  has_one  :skill_ability, -> { eager_load :skill }
+  delegate :skill, to: :skill_ability
+
   has_many :effects
   has_many :reagents
   has_and_belongs_to_many :tools, join_table: :wow_spells_tools, class_name: 'Wow::Item'
   has_many :created_items, -> { where(wow_spell_effects: {type: 24}) }, through: :effects, source: :item
   has_many :triggered_spells, -> { where(wow_spell_effects: {type: 64}) }, through: :effects, source: :triggered_spell
+  has_one :taught_by_effect, -> { where(type: 36).eager_load(:spell) }, foreign_key: :triggered_spell_id, class_name: 'Wow::Spell::Effect'
+
+  delegate :spell, to: :taught_by_effect, prefix: :taught_by, allow_nil: true
 
   def name
     self["name_#{I18n.locale}".to_sym]

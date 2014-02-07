@@ -44,6 +44,7 @@ en:
     cooldown: "Cooldown"
     dispel_type: "Dispel Type"
     effect: "Effect #%{num}"
+    difficulty: "Difficulty"
     duration:
       one: "%{count} second"
       other: "%{count} seconds"
@@ -58,6 +59,7 @@ en:
       other: "%{count} yards"
     reagents: "Reagents"
     requires_game_object: "Requires: %{game_object}"
+    requires: "Requires"
     school: "School"
     schools:
       physical: "Physical"
@@ -90,5 +92,6 @@ en:
     tooltip_spell_instant: "Instant"
     tooltip_spell_channel: "Channeled"
     tooltip_spell_cast_time: "%{cast_time} sec cast"
+    training_cost: "Training cost"
     value: "Value"
     quick_facts: "Quick Facts"

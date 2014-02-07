@@ -1,4 +1,8 @@
 module Wow
+  def self.table_name_prefix
+    'wow_'
+  end
+
   module ClassMethods
     def connect(name = 'Realmlist')
       establish_connection database_config(name)
