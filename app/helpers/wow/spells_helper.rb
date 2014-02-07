@@ -1,44 +1,46 @@
 module Wow::SpellsHelper
-  def wow_spell_effect_info(spell, i)
-    id = spell.effect_id(i)
-    aura = spell.effect_aura(i)
+
+  # @param effect Wow::Spell::Effect
+  def wow_spell_effect_info(effect)
+    id = effect.type
+    aura = effect.aura_id
     small = []
     html = "(#{id})"
-    html << " #{spell.effect_name(id)}"
-    if spell.effect_misc_value(i) > 0
+    html << " #{effect.name}"
+    if effect.misc_value?
       case id
         when 50, 76, 104 # Create object
-          small << "#{I18n.t('wow.object')}: #{wow_game_object_link(spell.effect_misc_value(i))}".html_safe
+          small << "#{I18n.t('wow.object')}: #{wow_game_object_link(effect.misc_value)}".html_safe
         when 118 # Require Skill
           #TODO: Add Skill link
-          html << " (#{spell.effect_misc_value(i)})"
+          html << " (#{effect.misc_value})"
         when 75, 87, 88, 89, 90 # Totems
-          html << " (#{wow_npc_link(spell.effect_misc_value(i))})"
+          html << " (#{wow_npc_link(effect.misc_value)})"
         when 6
         else
-          html << " (#{spell.effect_misc_value(i)})"
+          html << " (#{effect.misc_value})"
       end
     end
 
-    html << " (#{t("wow.schools.#{spell.school}")})" if id == 2 && spell.resistance_id
+    html << " (#{t("wow.schools.#{effect.spell.school}")})" if id == 2 && effect.spell.resistance_id
 
-    if spell.effect_radius(i) > 0
-      small << "#{I18n.t('wow.radius')}: #{I18n.t('wow.range_with_unit', count: spell.radius(i))}"
+    if effect.radius_id?
+      small << "#{I18n.t('wow.radius')}: #{I18n.t('wow.range_with_unit', count: effect.radius.base)}"
     end
 
-    small << "#{I18n.t('wow.value')}: #{spell.effect_base_points(i).to_i + 1}" if spell.effect_base_points(i) > 0 and spell.effect_item_type(i) == 0
+    small << "#{I18n.t('wow.value')}: #{effect.base_points + 1}" if effect.base_points? and !effect.item_id?
 
-    if spell.effect_amplitude(i) > 0
-      small << "#{I18n.t('wow.interval')}: #{I18n.t('wow.duration', count: spell.amplitude(i))}"
+    if effect.amplitude?
+      small << "#{I18n.t('wow.interval')}: #{I18n.t('wow.duration', count: effect.amplitude)}"
     end
 
-    if aura > 0 and !spell.aura_name(aura).nil?
-      html << ": #{spell.aura_name(aura)}"
+    if effect.aura_id? and !effect.aura.nil?
+      html << ": #{effect.aura}"
       case aura
         when 56, 78
-          html << " (#{wow_npc_link(spell.effect_misc_value(i))})"
+          html << " (#{wow_npc_link(effect.misc_value)})"
         else
-          html << " (#{spell.effect_misc_value(i)})" if spell.effect_misc_value(i) > 0
+          html << " (#{effect.misc_value})" if effect.misc_value?
       end
     elsif aura > 0
       html << ": Unknown Aura(#{aura})"
@@ -46,12 +48,12 @@ module Wow::SpellsHelper
 
     if id == 24
       html << tag(:br)
-      html << wow_item_link(spell.effect_item_type(i), spell.effect_base_points(i).to_i + 1).to_s
+      html << wow_item_link(effect.item_id, effect.base_points + 1).to_s
     end
 
-    if spell.effect_trigger_spell(i) > 0
+    if effect.trigger_id?
       html << tag(:br)
-      html << wow_spell_link(spell.effect_trigger_spell(i))
+      html << wow_spell_link(effect.trigger_id)
     end
 
     small.map! { |item| content_tag(:small, item) }
@@ -63,22 +65,20 @@ module Wow::SpellsHelper
     html.html_safe
   end
 
-  def reagents_links(spell)
+  def reagents_links(reagents)
     links = []
-    (1..8).each_with_index do |i|
-      unless spell.reagents(i).nil?
-        link = link_to(spell.reagents(i).name, spell.reagents(i), class: 'wow-link default')
-        link << content_tag(:span, " (#{spell.reagent_counts(i)})", class: 'wow-link default') if spell.reagent_counts(i) > 1
-        links << link
-      end
+    reagents.each do |r|
+      link = link_to(r.item.name, r.item, class: 'wow-link default')
+      link << content_tag(:span, " (#{r.amount})", class: 'wow-link default') if r.amount > 1
+      links << link
     end
     links.join(', ').html_safe
   end
 
-  def tools_links(spell)
+  def tools_links(tools)
     links = []
-    (1..2).each_with_index do |i|
-      links << link_to(spell.tools(i).name, spell.tools(i), class: 'wow-link default') unless spell.tools(i).nil?
+    tools.each do |t|
+      links << link_to(t.name, t, class: 'wow-link default')
     end
     links.join(', ').html_safe
   end

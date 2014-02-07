@@ -6,7 +6,7 @@
     .col-md-8
       .row
         .col-lg-8.info
-          = wow_icon(@spell.icon, 56)
+          = wow_icon(@spell.icon_name, 56)
           %ul.detail.list-unstyled
             %li
               %h4= @spell.name
@@ -32,33 +32,30 @@
                     = t('wow.tooltip_cooldown', count: @spell.cooldown)
             - if @spell.level?
               %li= t('wow.tooltip_required_level', level: @spell.level)
-            - if @spell.need_reagents?
+            - if @spell.reagents.count > 0
               %li
                 = "#{t('wow.reagents')}: "
-                = reagents_links(@spell)
-            - if @spell.need_tools?
+                = reagents_links(@spell.reagents)
+            - if @spell.tools.count > 0
               %li
                 = "#{t('wow.tools')}: "
-                = tools_links(@spell)
+                = tools_links(@spell.tools)
             - unless @spell.tooltip.blank?
               %li.yellow= @spell.tooltip
-      - if @spell.need_reagents? || @spell.need_tools?
+      - if @spell.reagents.count > 0 || @spell.tools.count > 0
         .row
-          - if @spell.need_reagents?
+          - if @spell.reagents.count > 0
             .col-lg-4.col-md-6
               %h3= t('wow.reagents')
               %ul.detail.list-unstyled
-                - (1..8).each_with_index do |i|
-                  - unless @spell.reagents(i).nil?
-                    %li.item
-                      = wow_item_link(@spell.reagents(i), @spell.reagent_counts(i))
-          - if @spell.need_tools?
+                - @spell.reagents.each do |r|
+                  %li.item= wow_item_link(r.item, r.amount)
+          - if @spell.tools.count > 0
             .col-lg-4.col-md-6
               %h3= t('wow.tools')
               %ul.detail.list-unstyled
-                - (1..2).each_with_index do |i|
-                  - unless @spell.tools(i).nil?
-                    %li.item= wow_item_link(@spell.tools(i))
+                - @spell.tools.each do |t|
+                  %li.item= wow_item_link(t)
 
     .col-md-4
       .quick-facts
@@ -68,7 +65,7 @@
           %ul
             - if @spell.level?
               %li= t('wow.tooltip_required_level', level: @spell.level)
-            - if @spell.focus_object_id > 0
+            - if @spell.focus_object_id?
               %li= t('wow.requires_game_object', game_object: @spell.focus_object.name)
           %h4= t('learn_more')
           = wowhead_link('spell', @spell.id)
@@ -96,7 +93,7 @@
       %td.col-lg-2
         = t('duration')
       %td.col-lg-4
-        - if @spell.duration_id > 0
+        - if @spell.duration_id?
           = t('wow.duration', count: @spell.duration.to_i)
         - else
           = t('none')
@@ -116,7 +113,7 @@
           = t('wow.tooltip_spell_channel')
       %td= t('wow.mechanic')
       %td
-        - if @spell.mechanic_id > 0
+        - if @spell.mechanic_id?
           = @spell.mechanic.name_en
         - else
           = t('none')
@@ -138,12 +135,11 @@
         %td= t('wow.max_targets')
         %td{colspan: 3}
           = @spell.targets
-    - (1..3).each_with_index do |i|
-      - if @spell.effect_id(i) > 0
-        %tr
-          %td= t('wow.effect', num: i)
-          %td.spell-effect{colspan: 3}
-            = wow_spell_effect_info(@spell, i)
+    - @spell.effects.each do |effect|
+      %tr
+        %td= t('wow.effect', num: effect.number)
+        %td.spell-effect{colspan: 3}
+          = wow_spell_effect_info(effect)
 
 
 = debug(@spell)

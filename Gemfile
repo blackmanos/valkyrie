@@ -77,3 +77,6 @@ gem 'sdoc',          group: :doc, require: false
 gem 'crummy', '~> 1.8.0'
 
 gem 'haml-rails'
+
+# FK indexes
+gem 'foreigner'

@@ -7,7 +7,7 @@ class Wow::SpellsController < ApplicationController
   end
 
   def show
-    @spell = Wow::Spell.eager_load(:spell_icon, :range, :cast_time, :dispel_type, :duration, :mechanic, :focus_object).find params[:id]
+    @spell = Wow::Spell.eager_load(:icon, :range, :cast_time, :dispel_type, :duration, :mechanic, :focus_object).find params[:id]
 
     add_crumb @spell.name, @spell
   end

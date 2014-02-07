@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206111228) do
-
-  create_table "active_admin_comments", force: true do |t|
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id", using: :btree
+ActiveRecord::Schema.define(version: 20140207110123) do
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -250,6 +235,29 @@ ActiveRecord::Schema.define(version: 20140206111228) do
     t.integer "base"
   end
 
+  create_table "wow_spell_effects", force: true do |t|
+    t.integer "spell_id"
+    t.integer "number"
+    t.integer "type"
+    t.integer "die_sides"
+    t.integer "base_points"
+    t.integer "target_a"
+    t.integer "target_b"
+    t.integer "radius_id"
+    t.integer "aura_id"
+    t.integer "amplitude"
+    t.integer "proc_value"
+    t.integer "chain_target",           limit: 3
+    t.integer "item_id"
+    t.integer "misc_value"
+    t.integer "trigger_id"
+    t.float   "points_per_combo_point"
+  end
+
+  add_index "wow_spell_effects", ["item_id"], name: "index_wow_spell_effects_on_item_id", using: :btree
+  add_index "wow_spell_effects", ["spell_id"], name: "wow_spell_effects_spell_id_fk", using: :btree
+  add_index "wow_spell_effects", ["trigger_id"], name: "index_wow_spell_effects_on_trigger_id", using: :btree
+
   create_table "wow_spell_focus_objects", force: true do |t|
     t.string "name_ru"
     t.string "name_en"
@@ -273,10 +281,16 @@ ActiveRecord::Schema.define(version: 20140206111228) do
     t.string  "name_en"
   end
 
+  create_table "wow_spell_reagents", force: true do |t|
+    t.integer "spell_id"
+    t.integer "item_id"
+    t.integer "amount"
+  end
+
   create_table "wow_spells", force: true do |t|
-    t.integer "resistance_id",                   limit: 2
-    t.integer "dispel_type_id",                  limit: 2
-    t.integer "mechanic_id",                     limit: 2
+    t.integer "resistance_id",           limit: 2
+    t.integer "dispel_type_id",          limit: 2
+    t.integer "mechanic_id",             limit: 2
     t.integer "spell_cast_time_id"
     t.integer "cooldown"
     t.integer "channel_interrupt_flags"
@@ -286,70 +300,10 @@ ActiveRecord::Schema.define(version: 20140206111228) do
     t.integer "duration_id"
     t.integer "power_cost"
     t.integer "range_id"
-    t.integer "tool_1"
-    t.integer "tool_2"
-    t.integer "reagent_1"
-    t.integer "reagent_2"
-    t.integer "reagent_3"
-    t.integer "reagent_4"
-    t.integer "reagent_5"
-    t.integer "reagent_6"
-    t.integer "reagent_7"
-    t.integer "reagent_8"
-    t.integer "reagent_1_count"
-    t.integer "reagent_2_count"
-    t.integer "reagent_3_count"
-    t.integer "reagent_4_count"
-    t.integer "reagent_5_count"
-    t.integer "reagent_6_count"
-    t.integer "reagent_7_count"
-    t.integer "reagent_8_count"
-    t.integer "effect_1_id"
-    t.integer "effect_2_id"
-    t.integer "effect_3_id"
-    t.integer "effect_1_die_sides",              limit: 8
-    t.integer "effect_2_die_sides",              limit: 8
-    t.integer "effect_3_die_sides",              limit: 8
-    t.integer "effect_1_base_points",            limit: 8
-    t.integer "effect_2_base_points",            limit: 8
-    t.integer "effect_3_base_points",            limit: 8
-    t.integer "effect_1_target_a",               limit: 8
-    t.integer "effect_2_target_a",               limit: 8
-    t.integer "effect_3_target_a",               limit: 8
-    t.integer "effect_1_target_b",               limit: 8
-    t.integer "effect_2_target_b",               limit: 8
-    t.integer "effect_3_target_b",               limit: 8
-    t.integer "effect_1_radius"
-    t.integer "effect_2_radius"
-    t.integer "effect_3_radius"
-    t.integer "effect_1_aura",                   limit: 8
-    t.integer "effect_2_aura",                   limit: 8
-    t.integer "effect_3_aura",                   limit: 8
-    t.integer "effect_1_amplitude",              limit: 8
-    t.integer "effect_2_amplitude",              limit: 8
-    t.integer "effect_3_amplitude",              limit: 8
-    t.integer "effect_1_proc_value"
-    t.integer "effect_2_proc_value"
-    t.integer "effect_3_proc_value"
-    t.integer "effect_1_chain_target",           limit: 3
-    t.integer "effect_2_chain_target",           limit: 3
-    t.integer "effect_3_chain_target",           limit: 3
-    t.integer "effect_1_item_type"
-    t.integer "effect_2_item_type"
-    t.integer "effect_3_item_type"
-    t.integer "effect_1_misc_value",             limit: 8
-    t.integer "effect_2_misc_value",             limit: 8
-    t.integer "effect_3_misc_value",             limit: 8
-    t.integer "effect_1_trigger_spell"
-    t.integer "effect_2_trigger_spell"
-    t.integer "effect_3_trigger_spell"
-    t.float   "effect_1_points_per_combo_point"
-    t.float   "effect_2_points_per_combo_point"
-    t.float   "effect_3_points_per_combo_point"
-    t.integer "spell_icon_id"
+    t.integer "icon_id"
     t.string  "name_en"
     t.string  "rank_en"
-    t.string  "tooltip_original_en",             limit: 512
+    t.string  "tooltip_original_en",     limit: 512
     t.string  "buff_original_en"
     t.integer "power_cost_percent"
     t.integer "affected_target_level"
@@ -357,16 +311,23 @@ ActiveRecord::Schema.define(version: 20140206111228) do
     t.float   "dmg_multiplier_1"
     t.float   "dmg_multiplier_2"
     t.float   "dmg_multiplier_3"
-    t.string  "tooltip_en",                      limit: 512
+    t.string  "tooltip_en",              limit: 512
     t.string  "buff_en"
     t.integer "power_type"
     t.string  "name_ru"
     t.string  "rank_ru"
-    t.string  "tooltip_ru",                      limit: 512
-    t.string  "tooltip_original_ru",             limit: 512
+    t.string  "tooltip_ru",              limit: 512
+    t.string  "tooltip_original_ru",     limit: 512
     t.string  "buff_ru"
     t.string  "buff_original_ru"
     t.integer "focus_object_id"
   end
+
+  create_table "wow_spells_tools", id: false, force: true do |t|
+    t.integer "spell_id", null: false
+    t.integer "item_id",  null: false
+  end
+
+  add_foreign_key "wow_spell_effects", "wow_spells", name: "wow_spell_effects_spell_id_fk", column: "spell_id"
 
 end
