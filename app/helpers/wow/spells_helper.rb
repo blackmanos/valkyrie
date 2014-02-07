@@ -51,9 +51,9 @@ module Wow::SpellsHelper
       html << wow_item_link(effect.item_id, effect.base_points + 1).to_s
     end
 
-    if effect.trigger_id?
+    if effect.triggered_spell_id?
       html << tag(:br)
-      html << wow_spell_link(effect.trigger_id)
+      html << wow_spell_link(effect.triggered_spell_id)
     end
 
     small.map! { |item| content_tag(:small, item) }

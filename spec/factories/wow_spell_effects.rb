@@ -22,13 +22,13 @@ FactoryGirl.define do
   factory :wow_effect_trigger_eat, class: 'Wow::Spell::Effect' do
     type 64
     number 1
-    association :trigger, factory: :wow_spell_eat, strategy: :create
+    association :triggered_spell, factory: :wow_spell_eat, strategy: :create
   end
 
   factory :wow_effect_trigger_drink, class: 'Wow::Spell::Effect' do
     type 64
     number 2
-    association :trigger, factory: :wow_spell_drink, strategy: :create
+    association :triggered_spell, factory: :wow_spell_drink, strategy: :create
   end
 
   factory :wow_effect_eat, class: 'Wow::Spell::Effect' do

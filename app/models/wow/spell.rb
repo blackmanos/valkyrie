@@ -19,7 +19,7 @@ class Wow::Spell < ActiveRecord::Base
   has_many :reagents
   has_and_belongs_to_many :tools, join_table: :wow_spells_tools, class_name: 'Wow::Item'
   has_many :created_items, -> { where(wow_spell_effects: {type: 24}) }, through: :effects, source: :item
-  has_many :triggers, -> { where(wow_spell_effects: {type: 64}) }, through: :effects, source: :trigger
+  has_many :triggered_spells, -> { where(wow_spell_effects: {type: 64}) }, through: :effects, source: :triggered_spell
 
   def name
     self["name_#{I18n.locale}".to_sym]

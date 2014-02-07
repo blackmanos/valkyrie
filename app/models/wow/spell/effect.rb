@@ -286,7 +286,7 @@ class Wow::Spell::Effect < ActiveRecord::Base
 
   belongs_to :spell, class_name: 'Wow::Spell'
   belongs_to :radius
-  belongs_to :trigger, class_name: 'Wow::Spell'
+  belongs_to :triggered_spell, class_name: 'Wow::Spell'
   belongs_to :item, class_name: 'Wow::Item'
 
   def name

@@ -11,7 +11,7 @@ FactoryGirl.define do
     after(:create) do |spell|
       create :wow_effect_trigger_eat, spell: spell
       create :wow_effect_trigger_drink, spell: spell
-      spell.tooltip_original_en = "Restores $#{spell.effect(1).trigger_id}o1 health and $#{spell.effect(2).trigger_id}o2 mana over $#{spell.effect(1).trigger_id}d."
+      spell.tooltip_original_en = "Restores $#{spell.effect(1).triggered_spell_id}o1 health and $#{spell.effect(2).triggered_spell_id}o2 mana over $#{spell.effect(1).triggered_spell_id}d."
     end
   end
 

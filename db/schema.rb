@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207110123) do
+ActiveRecord::Schema.define(version: 20140207173232) do
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -250,13 +250,13 @@ ActiveRecord::Schema.define(version: 20140207110123) do
     t.integer "chain_target",           limit: 3
     t.integer "item_id"
     t.integer "misc_value"
-    t.integer "trigger_id"
+    t.integer "triggered_spell_id"
     t.float   "points_per_combo_point"
   end
 
   add_index "wow_spell_effects", ["item_id"], name: "index_wow_spell_effects_on_item_id", using: :btree
   add_index "wow_spell_effects", ["spell_id"], name: "wow_spell_effects_spell_id_fk", using: :btree
-  add_index "wow_spell_effects", ["trigger_id"], name: "index_wow_spell_effects_on_trigger_id", using: :btree
+  add_index "wow_spell_effects", ["triggered_spell_id"], name: "index_wow_spell_effects_on_triggered_spell_id", using: :btree
 
   create_table "wow_spell_focus_objects", force: true do |t|
     t.string "name_ru"
