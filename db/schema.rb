@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207210519) do
+ActiveRecord::Schema.define(version: 20140208134608) do
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -318,7 +318,7 @@ ActiveRecord::Schema.define(version: 20140207210519) do
     t.integer "resistance_id",           limit: 2
     t.integer "dispel_type_id",          limit: 2
     t.integer "mechanic_id",             limit: 2
-    t.integer "spell_cast_time_id"
+    t.integer "cast_time_id"
     t.integer "cooldown"
     t.integer "channel_interrupt_flags"
     t.integer "proc_chance"

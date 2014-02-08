@@ -9,7 +9,7 @@ class Wow::Spell < ActiveRecord::Base
 
   belongs_to :icon
   belongs_to :range
-  belongs_to :cast_time, foreign_key: :spell_cast_time_id
+  belongs_to :cast_time
   belongs_to :dispel_type
   belongs_to :duration
   belongs_to :mechanic
