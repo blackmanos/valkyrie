@@ -20,7 +20,7 @@ class Wow::Spell < ActiveRecord::Base
   delegate :skill, to: :skill_ability, allow_nil: true
 
   has_many :effects, inverse_of: :spell
-  has_many :reagents
+  has_many :reagents, -> { eager_load(item: (:icon)) }
   has_and_belongs_to_many :tools, join_table: :wow_spells_tools, class_name: 'Wow::Item'
   has_many :created_items, -> { where(wow_spell_effects: {type: 24}) }, through: :effects, source: :item
   has_many :triggered_spells, -> { where(wow_spell_effects: {type: 64}) }, through: :effects, source: :triggered_spell

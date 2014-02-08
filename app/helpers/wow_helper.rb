@@ -112,6 +112,26 @@ module WowHelper
   end
 
   def format_money(amount)
-    amount
+    html = []
+    if amount/10000 > 0
+      html << content_tag(:span, amount / 10000, class: 'money-gold')
+      amount = amount % 10000
+    end
+
+    if amount/100 > 0
+      html << content_tag(:span, amount / 100, class: 'money-silver')
+      amount = amount % 100
+    end
+
+    if amount > 0
+      html << content_tag(:span, amount, class: 'money-copper')
+    end
+    html = html.join('')
+    html.html_safe
+  end
+
+  def required_classes_list(classes)
+    classes.map! { |c| t("wow.classes.#{Wow::Chars::Character::CLASSES[c]}")}
+    classes.join(', ').html_safe
   end
 end

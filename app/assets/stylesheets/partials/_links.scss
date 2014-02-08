@@ -36,6 +36,15 @@
   &.quality-4 { @include link-emphasis-variant(#c600ff); } /* #a335ee epic (purple) */
   &.quality-5 { @include link-emphasis-variant(#ff8000); } /* lengendary (orange) */
   &.quality-6 { @include link-emphasis-variant(#e5cc80); } /* artifact (gold) */
+  &.class-1 { @include link-emphasis-variant(#c69b6d); }
+  &.class-2 { @include link-emphasis-variant(#f48cba); }
+  &.class-3 { @include link-emphasis-variant(#aad372); }
+  &.class-4 { @include link-emphasis-variant(#fff468); }
+  &.class-5 { @include link-emphasis-variant(#fff); }
+  &.class-7 { @include link-emphasis-variant(#2359ff); }
+  &.class-8 { @include link-emphasis-variant(#68ccef); }
+  &.class-9 { @include link-emphasis-variant(#9382c9); }
+  &.class-11 { @include link-emphasis-variant(#ff7c0a); }
 
 
   &:hover {
@@ -43,4 +52,20 @@
       background-color: $pale;
     }
   }
+}
+
+.money-copper, .money-silver, .money-gold {
+  padding-right: 15px;
+  background: no-repeat right center;
+}
+.money-copper {
+  background-image: image-url('icons/copper.gif');
+}
+
+.money-silver {
+  background-image: image-url('icons/silver.gif');
+}
+
+.money-gold {
+  background-image: image-url('icons/gold.gif');
 }

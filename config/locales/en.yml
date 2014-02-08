@@ -41,6 +41,17 @@ en:
   wow:
     aura: "Buff"
     cast_time: "Cast Time"
+    class: "Class"
+    classes:
+      warrior: "Warrior"
+      paladin: "Paladin"
+      hunter: "Hunter"
+      rogue: "Rogue"
+      priest: "Priest"
+      shaman: "Shaman"
+      mage: "Mage"
+      warlock: "Warlock"
+      druid: "Druid"
     cooldown: "Cooldown"
     dispel_type: "Dispel Type"
     effect: "Effect #%{num}"

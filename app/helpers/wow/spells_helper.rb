@@ -84,6 +84,18 @@ module Wow::SpellsHelper
   end
 
   def skill_difficulty(skill_ability)
-    "#{skill_ability.learn_value} #{skill_ability.min_value} #{(skill_ability.min_value + skill_ability.max_value)/2} #{skill_ability.max_value}"
+    html = []
+    html << content_tag(:span, skill_ability.learn_value, class: 'difficulty-1')
+    html << content_tag(:span, skill_ability.min_value, class: 'difficulty-2')
+    html << content_tag(:span, (skill_ability.min_value + skill_ability.max_value)/2, class: 'difficulty-3')
+    html << content_tag(:span, skill_ability.max_value, class: 'difficulty-4')
+    html.join(' ').html_safe
+  end
+
+  def required_classes_links(classes)
+    classes.map! do |c|
+      link_to(t("wow.classes.#{Wow::Chars::Character::CLASSES[c]}"), '#', class: "wow-link class-#{c}")
+    end
+    classes.join(', ').html_safe
   end
 end
