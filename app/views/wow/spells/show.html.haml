@@ -19,13 +19,13 @@
                 - if @spell.range.max > 0
                   .pull-right
                     = t('wow.tooltip_spell_range', range: @spell.range.max)
-            - if @spell.cast_time.to_i > 0 || @spell.spell_cast_time_id == 1 || @spell.cooldown > 0
+            - if @spell.cast_time.to_i > 0 || @spell.cast_time_id == 1 || @spell.cooldown > 0
               %li
-                - if @spell.spell_cast_time_id != 1
+                - if @spell.cast_time_id != 1
                   = t('wow.tooltip_spell_cast_time', cast_time: @spell.cast_time.to_i)
                 - elsif @spell.channel_interrupt_flags
                   = t('wow.tooltip_spell_instant')
-                - elsif @spell.spell_cast_time_id == 1
+                - elsif @spell.cast_time_id == 1
                   = t('wow.tooltip_spell_channel')
                 - if @spell.cooldown > 0
                   .pull-right
@@ -109,7 +109,7 @@
     %tr
       %td= t('wow.cast_time')
       %td
-        - if @spell.spell_cast_time_id != 1
+        - if @spell.cast_time_id != 1
           = t('wow.duration', count: @spell.cast_time.to_i)
         - elsif @spell.channel_interrupt_flags
           = t('wow.tooltip_spell_instant')

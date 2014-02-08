@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208134608) do
+ActiveRecord::Schema.define(version: 20140208170736) do
 
   create_table "database_connections", force: true do |t|
     t.string "name",               default: "Realmlist"
@@ -314,6 +314,9 @@ ActiveRecord::Schema.define(version: 20140208134608) do
     t.integer "amount"
   end
 
+  add_index "wow_spell_reagents", ["item_id"], name: "index_wow_spell_reagents_on_item_id", using: :btree
+  add_index "wow_spell_reagents", ["spell_id"], name: "wow_spell_reagents_spell_id_fk", using: :btree
+
   create_table "wow_spells", force: true do |t|
     t.integer "resistance_id",           limit: 2
     t.integer "dispel_type_id",          limit: 2
@@ -355,6 +358,13 @@ ActiveRecord::Schema.define(version: 20140208134608) do
     t.integer "item_id",  null: false
   end
 
+  add_index "wow_spells_tools", ["item_id"], name: "index_wow_spells_tools_on_item_id", using: :btree
+  add_index "wow_spells_tools", ["spell_id"], name: "wow_spells_tools_spell_id_fk", using: :btree
+
   add_foreign_key "wow_spell_effects", "wow_spells", name: "wow_spell_effects_spell_id_fk", column: "spell_id"
+
+  add_foreign_key "wow_spell_reagents", "wow_spells", name: "wow_spell_reagents_spell_id_fk", column: "spell_id"
+
+  add_foreign_key "wow_spells_tools", "wow_spells", name: "wow_spells_tools_spell_id_fk", column: "spell_id"
 
 end

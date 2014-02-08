@@ -19,7 +19,7 @@ class Wow::Spell < ActiveRecord::Base
   has_one  :skill_ability, -> { eager_load :skill }
   delegate :skill, to: :skill_ability, allow_nil: true
 
-  has_many :effects
+  has_many :effects, inverse_of: :spell
   has_many :reagents
   has_and_belongs_to_many :tools, join_table: :wow_spells_tools, class_name: 'Wow::Item'
   has_many :created_items, -> { where(wow_spell_effects: {type: 24}) }, through: :effects, source: :item
@@ -94,42 +94,41 @@ class Wow::Spell < ActiveRecord::Base
       if !self.effect(i).nil? && self.effect(i).type == 64 && $1.blank? && to_replace == 'buff' && self.effect(i).trigger_id != spell.id
         spell = self.class.find(self.effect(i).trigger_id)
       end
-      value = ''
       effect = spell.effect(i)
-      case token
+      value = case token
         when 'z'
-          return '[Home]'
+          '[Home]'
         when 'l'
           count = effect.base_points
-          value =  (count == 1 || count =~ /^1(\.0+)?$/) ? $8 : $9
+          (count == 1 || count =~ /^1(\.0+)?$/) ? $8 : $9
         when 'g'
-          value = "[#{$7}]"
+          "[#{$7}]"
         when 'h'
-          value = spell.proc_chance
+          spell.proc_chance
         when 'u'
-          return ''
+          ''
         when 'v'
-          value = spell.affected_target_level
+          spell.affected_target_level
         when 'q'
-          value = effect.misc_value
+          effect.misc_value
         when 'i'
-          value = (spell.targets > 0) ? spell.targets : I18n.t(:nearby)
+          (spell.targets > 0) ? spell.targets : I18n.t(:nearby)
         when 'b'
-          value = effect.points_per_combo_point
+          effect.points_per_combo_point
         when 'm', 's'
-          value = effect.base_points + 1
+          (effect.base_points + 1).abs
         when 'a'
-          value = effect.radius.base
+          effect.radius.base
         when 'd'
-          value = "#{spell.duration.to_i} #{I18n.t(:sec)}"
+          "#{spell.duration.to_i} #{I18n.t(:sec)}"
         when 'o'
-          value = spell.real_duration(i) * (effect.base_points + 1)
+          spell.real_duration(i) * (effect.base_points + 1)
         when 't'
-          value = effect.amplitude
+          effect.amplitude
         when 'n'
-          value = spell.proc_charges
+          spell.proc_charges
         when 'x'
-          value = effect.chain_target
+          effect.chain_target
       end
 
       unless $3.blank?

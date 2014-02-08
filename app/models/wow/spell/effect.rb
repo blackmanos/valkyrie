@@ -284,7 +284,7 @@ class Wow::Spell::Effect < ActiveRecord::Base
 
   self.inheritance_column = :kind
 
-  belongs_to :spell, class_name: 'Wow::Spell'
+  belongs_to :spell, class_name: 'Wow::Spell', inverse_of: :effects
   belongs_to :radius
   belongs_to :triggered_spell, class_name: 'Wow::Spell'
   belongs_to :item, class_name: 'Wow::Item'
