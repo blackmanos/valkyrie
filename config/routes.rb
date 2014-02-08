@@ -8,7 +8,13 @@ Valkyrie::Application.routes.draw do
 
   namespace :game, module: :wow, as: :wow do
     resources :spells, only: [:show, :index] do
-    #  collection { post :search, to: 'spells#index' }
+      collection do
+        post :search, to: 'spells#index'
+        get 'category/:category_id', to: 'spells#index', as: :category
+        get 'category/:category_id/skill/:skill_id', to: 'spells#index', as: :category_skill
+        get 'category/:category_id/class/:class_id', to: 'spells#index', as: :class
+        get 'category/:category_id/class/:class_id/skill/:skill_id', to: 'spells#index', as: :class_skill
+      end
     end
     resources :items, only: [:show, :index]
   end

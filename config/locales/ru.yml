@@ -75,6 +75,8 @@ ru:
       arcane: "Тайная Магия"
     spells: "Заклинания"
     spell: "Заклинание"
+    spell_categories:
+      abilities: "Способности"
     spell_description: "Описание заклинания"
     starter_spell: "Начальное заклинание"
     tools: "Инструменты"

@@ -82,6 +82,8 @@ en:
       arcane: "Arcane"
     spells: "Spells"
     spell: "Spell"
+    spell_categories:
+      abilities: "Abilities"
     spell_description: "Spell Details"
     starter_spell: "Starter spell"
     tools: "Tools"

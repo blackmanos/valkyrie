@@ -9,4 +9,10 @@ class Wow::SkillAbility < ActiveRecord::Base
     end
     a
   end
+
+  def class_id
+    11.times do |i|
+      return i+1 if 2 ** i == class_mask
+    end
+  end
 end
