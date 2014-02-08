@@ -83,6 +83,7 @@ en:
     spells: "Spells"
     spell: "Spell"
     spell_description: "Spell Details"
+    starter_spell: "Starter spell"
     tools: "Tools"
     tooltip_cooldown: "%{count} sec cooldown"
     tooltip_duration_left:

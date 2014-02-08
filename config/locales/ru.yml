@@ -76,6 +76,7 @@ ru:
     spells: "Заклинания"
     spell: "Заклинание"
     spell_description: "Описание заклинания"
+    starter_spell: "Начальное заклинание"
     tools: "Инструменты"
     tooltip_cooldown: "Восстановление: %{count} сек."
     tooltip_duration_left:

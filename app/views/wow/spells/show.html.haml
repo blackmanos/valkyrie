@@ -83,6 +83,8 @@
                 %li
                   = "#{t('wow.training_cost')}: "
                   = format_money(@spell.skill_ability.spell_cost)
+              - if @spell.skill_ability.learn_on_get_skill == 1
+                %li= t('wow.starter_spell')
               - if @spell.skill.profession? && @spell.skill_ability.max_value?
                 %li
                   = "#{t('wow.difficulty')}: "
