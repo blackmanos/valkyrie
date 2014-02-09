@@ -16,8 +16,8 @@ class Wow::Spell < ActiveRecord::Base
   belongs_to :focus_object
 
   has_many :trainers, class_name: 'Wow::Npc::Trainer'
-  has_one  :skill_ability, -> { eager_load :skill }
-  delegate :skill, to: :skill_ability, allow_nil: true
+  has_one  :skill_ability
+  has_one  :skill, through: :skill_ability
 
   has_many :effects, inverse_of: :spell
   has_many :reagents, -> { eager_load(item: (:icon)) }
