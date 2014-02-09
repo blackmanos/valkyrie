@@ -76,7 +76,11 @@ ru:
     spells: "Заклинания"
     spell: "Заклинание"
     spell_categories:
+      armor: "Броня"
+      weapon: "Оружие"
+      secondary_skills: "Вторичные навыки"
       abilities: "Способности"
+      professions: "Профессии"
     spell_description: "Описание заклинания"
     starter_spell: "Начальное заклинание"
     tools: "Инструменты"

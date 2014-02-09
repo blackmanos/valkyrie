@@ -18,6 +18,9 @@ class Wow::SpellsController < ApplicationController
           c = @spell.skill_ability.class_id
           add_crumb I18n.t("wow.classes.#{Wow::Chars::Character::CLASSES[c]}"), class_wow_spells_path(category_id, c)
           add_crumb @spell.skill.name, class_skill_wow_spells_path(category_id, c, skill_id)
+        when 6, 8, 9, 11
+          add_crumb I18n.t("wow.spell_categories.#{Wow::Skill::CATEGORIES[category_id]}"), category_wow_spells_path(category_id)
+          add_crumb @spell.skill.name, category_skill_wow_spells_path(category_id, skill_id)
       end
     end
 

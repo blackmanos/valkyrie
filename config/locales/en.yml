@@ -83,7 +83,11 @@ en:
     spells: "Spells"
     spell: "Spell"
     spell_categories:
+      armor: "Armor"
+      weapon: "Weapon"
+      secondary_skills: "Secondary Skills"
       abilities: "Abilities"
+      professions: "Professions"
     spell_description: "Spell Details"
     starter_spell: "Starter spell"
     tools: "Tools"

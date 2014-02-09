@@ -13,7 +13,6 @@ class Wow::Skill < ActiveRecord::Base
       'languages',
       'professions',
       'generic_dnd'
-
   ]
   def name
     self["name_#{I18n.locale}".to_sym]
