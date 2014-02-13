@@ -46,15 +46,38 @@ $font-size-base: 13px;
 $headings-font-weight:    300;
 $headings-color: white;
 
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+
+$padding-large-vertical:    10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical:    5px !default;
+$padding-small-horizontal:  10px !default;
+
+$padding-xs-vertical:       1px !default;
+$padding-xs-horizontal:     5px !default;
+
+$line-height-large:         1.33 !default;
+$line-height-small:         1.5 !default;
+
+$border-radius-base:        2px !default;
+$border-radius-large:       6px !default;
+$border-radius-small:       0px !default;
+
 //== Tables
 //
 //## Customizes the `.table` component with basic values, each used across all table variations.
 
 //** Background color used for `.table-striped`.
-$table-bg-accent: $gray-light;
+$table-bg-accent: rgba(255, 255, 255, 0.05);;
 
 //** Border color for table and cell borders.
-$table-border-color: $gray-lighter;
+$table-border-color: rgba(255,255,255,0.07);
 
 //== Buttons
 //
@@ -65,6 +88,28 @@ $btn-font-weight:                normal !default;
 $btn-default-color:              $link-color;
 $btn-default-bg:                 rgba(0, 0, 0, 0.15);
 $btn-default-border:             rgba(255, 255, 255, 0.15);
+
+//== Forms
+//
+//##
+
+//** `<input>` background color
+$input-bg:                       rgba(0, 0, 0, 0.5);
+//** `<input disabled>` background color
+$input-bg-disabled:              rgba(20, 20, 23, 0.5);
+
+//** Text color for `<input>`s
+$input-color:                    rgba(255, 255, 255, 0.7);;
+//** `<input>` border color
+$input-border:                   rgba(255, 255, 255, 0.15);;
+//** `<input>` border radius
+$input-border-radius:            $border-radius-base !default;
+//** Border color for inputs on focus
+$input-border-focus:             #1e5f99;
+
+//** Placeholder text color
+$input-color-placeholder:        rgba(255, 255, 255, 0.3);
+
 
 //== Navbar
 //
@@ -81,7 +126,7 @@ $navbar-default-border:            rgba(255, 255, 255, 0.07);
 //
 //##
 
-$well-bg:                     $gray-light;
+$well-bg:                     #272727;
 
 //== Breadcrumbs
 //
@@ -101,15 +146,15 @@ $breadcrumb-separator:          '';
 //
 //##
 
-$code-color:                  #c7254e !default;
-$code-bg:                     #f9f2f4 !default;
+$code-color:                  $text-color;
+$code-bg:                     rgba(0, 0, 0, 0.03);
 
 $kbd-color:                   #fff !default;
 $kbd-bg:                      #333 !default;
 
-$pre-bg:                      $gray-light !default;
-$pre-color:                   $gray-dark !default;
-$pre-border-color:            $gray-lighter !default;
+$pre-bg:                      #141417;
+$pre-color:                   white;
+$pre-border-color:            $table-border-color;
 $pre-scrollable-max-height:   340px !default;
 
 //== Type
