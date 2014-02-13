@@ -1,0 +1,545 @@
+/* ©2013 Blizzard Entertainment, Inc. All rights reserved. */
+.clearfix {
+  *zoom: 1
+}
+
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  visibility: hidden;
+  line-height: 0
+}
+
+.clearfix:after {
+  clear: both
+}
+
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0
+}
+
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 34px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+.browse-template .main-page-content  {
+  padding-top: 250px;
+}
+
+.game-types li {
+  height: 50px;
+}
+
+.game-types .glyphicon {
+  margin-right: 10px;
+}
+
+.home-new-icon {
+  margin: 1px 7px 0 0;
+}
+
+.region-status span {
+  display: inline-block;
+  margin-left: 10px;
+  color: #fff;
+}
+
+.region-status span.online-players {
+  color: #75e900;
+}
+
+.browse-template > .container {
+  padding-top: 180px;
+  overflow: visible
+}
+
+.browse-template > .container.category {
+  padding-top: 90px
+}
+
+.browse-template .game-family-logo {
+  width: 450px;
+  height: 250px;
+  position: absolute;
+  top: -188px;
+  left: -50px;
+  z-index: 1
+}
+
+.browse-template .game-family-logo img {
+  height: auto
+}
+
+.browse-template .category-heading {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  z-index: 1
+}
+
+.browse-template .sidebar {
+  min-height: 500px;
+  position: relative
+}
+
+.browse-template .sidebar .sidebar-content {
+  position: relative;
+  z-index: 2
+}
+
+.browse-template .sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.browse-template .sidebar ul li {
+  list-style: none
+}
+
+.browse-template .sidebar .product-count {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.browse-template .sidebar .game-types li {
+  margin-top: -8px;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.browse-template .sidebar .game-types li a {
+  color: #e9e9e9;
+  color: rgba(255, 255, 255, 0.8)
+}
+
+.browse-template .sidebar .game-types li a:hover, .browse-template .sidebar .game-types li a:focus {
+  color: #fff
+}
+
+.browse-template .sidebar .game-types .game-badge {
+  display: inline-block;
+  background-image: url("../../images/product-card/sprite-badges.png");
+  background-repeat: no-repeat;
+  background-position: 0 -50px;
+  width: 45px;
+  height: 50px;
+  overflow: hidden;
+  line-height: 50px;
+  vertical-align: middle;
+  text-indent: -9999px
+}
+
+.browse-template .sidebar .game-types .game-badge.wow {
+  background-position: -50px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.diablo {
+  background-position: -100px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.starcraft {
+  background-position: -150px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.hearthstone {
+  background-position: -200px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.battle-net {
+  background-position: -250px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.all-stars {
+  background-position: -300px 0
+}
+
+.browse-template .sidebar .game-types .game-badge.legacy-games {
+  background-position: -350px 0
+}
+
+.browse-template .sidebar .product-types li {
+  margin-bottom: 10px
+}
+
+.browse-template .sidebar .product-types a {
+  color: #e9e9e9;
+  color: rgba(255, 255, 255, 0.7)
+}
+
+.browse-template .sidebar .product-types a:hover {
+  color: #fff
+}
+
+.browse-template .sidebar .filter-list a, .browse-template .sidebar .filter-list a:hover {
+  color: #e9e9e9;
+  color: rgba(255, 255, 255, 0.7)
+}
+
+.browse-template .sidebar .filter-list a .count, .browse-template .sidebar .filter-list a:hover .count {
+  color: rgba(255, 255, 255, 0.3)
+}
+
+.browse-template .sidebar .filter-list a .is-checked, .browse-template .sidebar .filter-list a:hover .is-checked {
+  color: #fff
+}
+
+.browse-template .sidebar .filter-list a .is-checked .count, .browse-template .sidebar .filter-list a:hover .is-checked .count {
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.browse-template .sidebar .sidebar-links {
+  margin-top: 40px
+}
+
+.browse-template .sidebar .sidebar-links p {
+  font-size: 13px
+}
+
+.browse-template .sidebar .sidebar-links a {
+  color: #909090;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.browse-template .sidebar .sidebar-links a .icon {
+  opacity: .8
+}
+
+.browse-template .sidebar .sidebar-links a:hover {
+  color: #e9e9e9;
+  color: rgba(255, 255, 255, 0.7)
+}
+
+.browse-template .sidebar .sidebar-links a:hover .icon {
+  opacity: 1
+}
+
+.browse-template .sidebar .clear-filters {
+  padding-left: 2em;
+  font-size: 11px
+}
+
+.browse-template .product-card-container {
+  width: 700px;
+  margin: 0;
+  padding: 0
+}
+
+.browse-template .product-card-container li {
+  display: block;
+  list-style: none;
+  background-color: rgba(39, 56, 76, 0.9);
+  margin: 0 19px 40px 0;
+  width: 220px;
+  height: 230px;
+  float: left;
+  position: relative
+}
+
+.browse-template .product-card-container li .thumbnail {
+  height: 100%
+}
+
+.browse-template .product-card-container li .thumbnail img {
+  width: 220px;
+  height: 124px
+}
+
+.browse-template .product-card-container li .cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: background-color .2s;
+  -moz-transition: background-color .2s;
+  -o-transition: background-color .2s;
+  transition: background-color .2s;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 25
+}
+
+.browse-template .product-card-container li:hover .cover {
+  background-color: rgba(255, 255, 255, 0.05)
+}
+
+@media (max-width: 1199px) {
+  .browse-template .product-card-container li:nth-child(3n+3) {
+    margin-right: 0
+  }
+}
+
+.browse-template .product-card-container .product-card-info {
+  padding: 9px 13px 13px 13px
+}
+
+.browse-template .product-card-container .product-card-info .product-name {
+  margin: 0;
+  padding-top: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400
+}
+
+.browse-template .product-card-container .product-card-info .product-desc {
+  margin: 2px 0 0 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase
+}
+
+.browse-template .product-card-container .product-card-info .product-price {
+  font-size: 15px;
+  color: #12b4ff;
+  position: absolute;
+  bottom: 0
+}
+
+.browse-template .product-card-container .product-card-info .product-price.discount {
+  color: #75e900
+}
+
+.browse-template .product-card-container .product-card-info .product-price.free {
+  color: #75e900
+}
+
+.browse-template .product-card-container .product-card-info .product-price.employee-price {
+  color: #75e900
+}
+
+.browse-template.product-family-wow .product-card-container li {
+  background-color: #392f2a
+}
+
+.browse-template.product-family-d3 .product-card-container li {
+  background-color: #3e2a2f
+}
+
+.home #hero-carousel {
+  margin-bottom: 40px;
+  width: 700px;
+  height: 251px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4)
+}
+
+.home #hero-carousel .carousel-inner {
+  border: 0
+}
+
+.home #hero-carousel .carousel-inner .cover {
+  background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: absolute;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+  z-index: 1
+}
+
+.home #hero-carousel .carousel-inner img {
+  width: 698px;
+  height: 249px
+}
+
+.home #hero-carousel .carousel-inner .carousel-caption {
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 10px 14px 30px 15px;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: -60px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 0;
+  -webkit-transition: opacity 1.25s, -webkit-transform .2s;
+  transition: opacity 1.25s, transform .2s
+}
+
+.home #hero-carousel .carousel-inner .carousel-caption .bg-layer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: -webkit-transform .2s;
+  transition: transform .2s
+}
+
+.home #hero-carousel .carousel-inner .carousel-caption h4 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.home #hero-carousel .carousel-inner .carousel-caption .summary {
+  height: 32px;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.home #hero-carousel:hover .cover {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2)
+}
+
+.home #hero-carousel:hover .carousel-controls {
+  opacity: 1
+}
+
+.home #hero-carousel:hover .more .carousel-caption {
+  -webkit-transform: translate(0, -47px);
+  -ms-transform: translate(0, -47px);
+  transform: translate(0, -47px)
+}
+
+.home #hero-carousel:hover .more .bg-layer {
+  -webkit-transform: translate(0, -63px);
+  -ms-transform: translate(0, -63px);
+  transform: translate(0, -63px)
+}
+
+.home #hero-carousel .carousel-controls {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  width: 51px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity .2s
+}
+
+.home #hero-carousel .carousel-controls button {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 0;
+  border: 0
+}
+
+.home #hero-carousel .carousel-controls button span {
+  display: block;
+  background: url('../../images/toolkit/carousels/sprite-carousel-control.png') no-repeat 0 0;
+  margin: 0 0 0 7px;
+  padding: 0;
+  width: 8px;
+  height: 14px;
+  opacity: .6;
+  position: relative;
+  z-index: -1
+}
+
+.home #hero-carousel .carousel-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.4)
+}
+
+.home #hero-carousel .carousel-controls button:hover span {
+  opacity: 1
+}
+
+.home #hero-carousel .carousel-controls button:active {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.6)
+}
+
+.home #hero-carousel .carousel-controls button:active span {
+  opacity: .8
+}
+
+.home #hero-carousel .carousel-controls .left {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  left: 0
+}
+
+.home #hero-carousel .carousel-controls .left span {
+  background-position: -32px -80px
+}
+
+.home #hero-carousel .carousel-controls .left:active {
+  border-right: rgba(255, 255, 255, 0.1)
+}
+
+.home #hero-carousel .carousel-controls .left:active span {
+  left: 1px;
+  top: 1px
+}
+
+.home #hero-carousel .carousel-controls .right {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  left: 25px
+}
+
+.home #hero-carousel .carousel-controls .right span {
+  background-position: -40px -80px;
+  margin-left: 10px
+}
+
+.home #hero-carousel .carousel-controls .right:active {
+  border-left: 1px solid rgba(255, 255, 255, 0.1)
+}
+
+.home #hero-carousel .carousel-controls .right:active span {
+  left: 1px;
+  top: 1px
+}
+
+@media (min-width: 1200px) {
+  .browse-template .sidebar .product-count {
+    font-size: 13px
+  }
+
+  .browse-template .sidebar .game-types li {
+    font-size: 17px
+  }
+
+  .browse-template .product-card-container {
+    width: 870px
+  }
+
+  .browse-template .product-card-container li {
+    margin: 0 18px 40px 0;
+    width: 204px;
+    height: 217px
+  }
+
+  .browse-template .product-card-container li:nth-child(4n+4) {
+    margin-right: 0
+  }
+
+  .browse-template .product-card-container li .thumbnail img {
+    width: 204px;
+    height: 113px
+  }
+
+  .home #hero-carousel {
+    width: 870px;
+    height: 312px
+  }
+
+  .home #hero-carousel .carousel-inner img {
+    width: 868px;
+    height: 310px
+  }
+}

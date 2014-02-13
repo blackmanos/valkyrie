@@ -3,15 +3,15 @@
     position: relative;
   }
   .header-primary, .header-secondary {
-    background: $gray-lighter;
+    background: $navbar-default-bg;
     border-bottom: 1px solid $navbar-default-border;
     white-space: nowrap;
   }
   .header-primary {
-    height: 79px;
+    height: 80px;
   }
   .header-secondary {
-    height: 39px;
+    height: 40px;
   }
   border-width: 0;
 
@@ -58,7 +58,7 @@
         line-height: 30px;
         padding: 0 0 $padding-base-vertical 0;
         position: relative;
-        font-size: 11px;
+        font-size: 10px;
         a {
           color: #00b6ff;
           text-decoration: none;

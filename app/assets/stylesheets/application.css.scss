@@ -19,6 +19,10 @@
 @import 'partials/icons';
 @import 'partials/breadcrumbs';
 @import 'partials/links';
+// TODO: remove blizz toolkit
+//@import 'partials/toolkit';
+@import 'partials/template/browse';
+@import 'partials/global';
 
 a {
   @include transition(color .2s);

@@ -2,11 +2,17 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$gray-darker:   rgba(255,255,255,0.7);
-$gray-dark:     rgba(255,255,255,0.5);
-$gray:          rgba(255,255,255,0.3);
-$gray-light:    rgba(255,255,255,0.07);
-$gray-lighter:  rgba(255,255,255,0.05);
+$gray-darker:            lighten(#000, 13.5%) !default; // #222
+$gray-dark:              lighten(#000, 20%) !default;   // #333
+$gray:                   lighten(#000, 33.5%) !default; // #555
+$gray-light:             lighten(#000, 60%) !default;   // #999
+$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+
+$brand-primary:         #428bca !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
 
 $gray-pale:     rgba(255,255,255,0.15);
 $pale:          rgba(0,0,0,0.15);
@@ -20,7 +26,13 @@ $yellow: #ffd100;
 //** Background color for `<body>`.
 $body-bg: #281504;
 //** Global text color on `<body>`.
-$text-color:  $gray-darker;
+$text-color:  rgba(255, 255, 255, 0.7);
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
 
 //== Typography
 //
@@ -44,12 +56,26 @@ $table-bg-accent: $gray-light;
 //** Border color for table and cell borders.
 $table-border-color: $gray-lighter;
 
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              $link-color;
+$btn-default-bg:                 rgba(0, 0, 0, 0.15);
+$btn-default-border:             rgba(255, 255, 255, 0.15);
+
 //== Navbar
 //
 //##
 
 // Basics of a navbar
-$navbar-default-border: $gray-light;
+$navbar-margin-bottom:             50px;
+
+$navbar-default-color:             #777 !default;
+$navbar-default-bg:                rgba(255, 255, 255, 0.05);
+$navbar-default-border:            rgba(255, 255, 255, 0.07);
 
 //== Wells
 //
@@ -85,3 +111,10 @@ $pre-bg:                      $gray-light !default;
 $pre-color:                   $gray-dark !default;
 $pre-border-color:            $gray-lighter !default;
 $pre-scrollable-max-height:   340px !default;
+
+//== Type
+//
+//##
+
+//** Text muted color
+$text-muted:                  rgba(255, 255, 255, 0.3);

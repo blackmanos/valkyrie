@@ -1,4 +1,10 @@
 Valkyrie::Application.routes.draw do
+  get "markup_dev/css"
+
+  get "markup_dev/components"
+
+  get "markup_dev/js"
+
   devise_for :users
 
   scope '/game/:realm', module: :wow  do

@@ -11,10 +11,10 @@
     %header.navbar.navbar-default.navbar-static-top
       .header-primary
         .container
-          %h1.text-logo
+          %h1.h3.shop-logo
             = link_to root_path do
               Valkyrie WoW
-              %span.small Classic 1.12
+              %span.beta-tag Vanilla 1.12.2
           %nav.service
             %ul.bar
               %li.cell.welcome
@@ -26,13 +26,18 @@
                   = link_to t('devise.links.login'), new_user_session_path
                   = t 'or'
                   = link_to t('devise.links.register'), new_user_registration_path
-              %li.cell= link_to t('game'), '#', class: 'link'
-              %li.cell= link_to t('community'), '#', class: 'link'
-              %li.cell= link_to t('forums'), '#', class: 'link'
+              %li.cell= link_to t('account'), '#', class: 'link'
+              %li.cell= link_to t('armory'), '#', class: 'link'
+              %li.cell= link_to t('database'), '#', class: 'link'
+              %li.cell= link_to t('boards'), '#', class: 'link'
 
       .header-secondary
         .container
           = render_crumbs
+          .region-status
+            %span set realmlist logon.valkyrie-wow.com
+            %span.online-players 420 players online
+            %span rev. 2406
     .container
       = yield
     %footer
@@ -45,6 +50,7 @@
             - else
               = link_to 'English', "#{ENV['english_website_url']}#{request.env['PATH_INFO']}", class: 'pull-right'
             %span.legal-links
+              %span= "© Valkyrie WoW, 2009-#{Date.today.year}"
               %a{href: '#'}= t('server_rules')
               %a{href: '#'}= t('contacts')
-            = "© Valkyrie WoW, 2009-#{Date.today.year}"
+

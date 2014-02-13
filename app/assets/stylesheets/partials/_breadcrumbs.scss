@@ -1,12 +1,13 @@
 .breadcrumb {
-  line-height: 39px;
-  margin-bottom: 0;
+  line-height: 40px;
+  font-size: 13px;
+  margin: 0;
   .home-new-icon {
-    margin-right: $padding-xs-horizontal;
+    margin-right: $padding-xs-horizontal * 2;
   }
   > li {
     > a {
-      color: $gray-dark;
+      color: $text-color;
       &:focus, &:hover {
         color: white;
       }
